@@ -477,9 +477,12 @@
           <span v-if="category === 'hitters' && p.fielding && p.fielding.length > 0" class="flex items-center gap-0.5 text-indigo-300">
             <span class="material-symbols-outlined text-xs">shield</span> 守備査定あり ({{ p.fielding.map(f => f.pos).join('/') }})
           </span>
-          <span v-else-if="category === 'pitchers' && p.pitch_values && p.pitch_values.length > 0" class="flex items-center gap-0.5 text-cyan-300">
-            <span class="material-symbols-outlined text-xs">speed</span> {{ p.pitch_values.length }}球種査定あり
-          </span>
+          <div v-else-if="category === 'pitchers' && p.pitch_values && p.pitch_values.length > 0" class="flex items-center gap-1 flex-wrap overflow-hidden">
+            <span v-for="pv in p.pitch_values.slice(0, 3)" :key="pv.type" class="inline-flex items-center gap-0.5 bg-slate-900/90 px-1.5 py-0.5 rounded border border-slate-700/80 text-[10px]">
+              <span class="text-slate-300 font-bold">{{ pv.name.split('/')[0].split('(')[0] }}</span>
+              <span :class="'rank-badge rank-' + pv.pawa_grade" class="px-1 text-[9px]">{{ pv.pawa_grade }}</span>
+            </span>
+          </div>
           <span v-else></span>
           <span class="text-slate-400 group-hover:text-amber-400 font-bold flex items-center gap-0.5">
             詳細 <span class="material-symbols-outlined text-xs">arrow_forward_ios</span>
@@ -837,32 +840,36 @@
 
         <!-- 球種別データ（投手の場合） -->
         <div v-if="category === 'pitchers' && selectedPlayer.pitch_values && selectedPlayer.pitch_values.length > 0" class="mb-3">
-          <h3 class="text-xs font-bold text-cyan-400 uppercase tracking-wider mb-2 flex items-center gap-1.5">
-            <span class="material-symbols-outlined text-sm">speed</span> 球種別データ・変化球クオリティ
+          <h3 class="text-xs font-bold text-cyan-400 uppercase tracking-wider mb-2 flex items-center gap-1.5 font-pawapro">
+            <span class="material-symbols-outlined text-sm">speed</span> 球種別クオリティ査定 (G~S, 1~100) & 変化球データ
           </h3>
           <div class="overflow-x-auto bg-slate-950/60 rounded-xl border border-slate-800">
             <table class="w-full text-xs text-left">
               <thead class="bg-slate-800/60 text-slate-400 text-[11px]">
                 <tr>
                   <th class="p-2">球種</th>
+                  <th class="p-2 text-center">球種クオリティ査定</th>
                   <th class="p-2 text-right">平均球速</th>
                   <th class="p-2 text-right">投球数</th>
-                  <th class="p-2 text-right">球種Grade</th>
-                  <th class="p-2 text-right">空振り率(SwStr%)</th>
-                  <th class="p-2 text-right">見逃し+空振り(CSW%)</th>
+                  <th class="p-2 text-right">空振り率 (SwStr%)</th>
+                  <th class="p-2 text-right">見逃し+空振り (CSW%)</th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-slate-800 text-slate-300">
                 <tr v-for="pv in selectedPlayer.pitch_values" :key="pv.type">
-                  <td class="p-2 font-bold text-white flex items-center gap-1">
-                    <span class="bg-indigo-900/60 text-indigo-300 text-[10px] px-1.5 py-0.5 rounded">{{ pv.type }}</span>
-                    {{ getPitchTypeName(pv.type) }}
+                  <td class="p-2 font-bold text-white flex items-center gap-1.5">
+                    <span class="bg-indigo-900/60 text-indigo-300 text-[10px] px-1.5 py-0.5 rounded font-mono">{{ pv.type }}</span>
+                    <span>{{ pv.name || getPitchTypeName(pv.type) }}</span>
                   </td>
-                  <td class="p-2 text-right font-num">{{ pv.velo > 0 ? pv.velo + ' km/h' : '-' }}</td>
-                  <td class="p-2 text-right font-num">{{ pv.pitches }}</td>
-                  <td class="p-2 text-right font-num font-bold text-amber-400">{{ pv.grade }}</td>
-                  <td class="p-2 text-right font-num text-cyan-400">{{ pv.swstr }}%</td>
-                  <td class="p-2 text-right font-num">{{ pv.csw }}%</td>
+                  <td class="p-2 text-center">
+                    <span :class="'rank-badge rank-' + pv.pawa_grade" class="px-2 py-0.5 text-xs font-pawapro shadow-sm">
+                      {{ pv.pawa_grade }} <span class="font-num ml-0.5 text-[11px]">{{ pv.pawa_val }}</span>
+                    </span>
+                  </td>
+                  <td class="p-2 text-right font-num font-bold text-slate-200">{{ pv.velo > 0 ? pv.velo + ' km/h' : '-' }}</td>
+                  <td class="p-2 text-right font-num text-slate-400">{{ pv.pitches }}</td>
+                  <td class="p-2 text-right font-num text-cyan-400 font-bold">{{ pv.swstr }}%</td>
+                  <td class="p-2 text-right font-num text-slate-300">{{ pv.csw }}%</td>
                 </tr>
               </tbody>
             </table>
