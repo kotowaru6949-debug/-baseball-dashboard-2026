@@ -381,6 +381,24 @@
               </div>
               <span class="w-8 text-right font-num font-bold text-slate-200">{{ p.pawapro.contact.val }}</span>
             </div>
+
+            <div class="flex items-center justify-between" v-if="p.pawapro.defense && p.main_pos !== '-'">
+              <span class="w-16 text-slate-400 font-bold text-[11px]">守備力({{ p.main_pos }})</span>
+              <span :class="'rank-badge rank-' + p.pawapro.defense.grade" class="w-5 h-4 text-[10px]">{{ p.pawapro.defense.grade }}</span>
+              <div class="flex-1 mx-2 pawa-bar-bg h-2">
+                <div class="h-full rounded-full transition-all duration-500" :class="getBarColor(p.pawapro.defense.val)" :style="{ width: p.pawapro.defense.val + '%' }"></div>
+              </div>
+              <span class="w-8 text-right font-num font-bold text-slate-200">{{ p.pawapro.defense.val }}</span>
+            </div>
+
+            <div class="flex items-center justify-between" v-if="p.pawapro.fielding_error && p.main_pos !== '-'">
+              <span class="w-16 text-slate-400 font-bold text-[11px]">捕球/確実性</span>
+              <span :class="'rank-badge rank-' + p.pawapro.fielding_error.grade" class="w-5 h-4 text-[10px]">{{ p.pawapro.fielding_error.grade }}</span>
+              <div class="flex-1 mx-2 pawa-bar-bg h-2">
+                <div class="h-full rounded-full transition-all duration-500" :class="getBarColor(p.pawapro.fielding_error.val)" :style="{ width: p.pawapro.fielding_error.val + '%' }"></div>
+              </div>
+              <span class="w-8 text-right font-num font-bold text-slate-200">{{ p.pawapro.fielding_error.val }}</span>
+            </div>
           </template>
 
           <!-- 投手能力 -->
@@ -474,9 +492,13 @@
 
         <!-- 追加バッジ（守備・球種データ保持有無） -->
         <div class="mt-2 flex items-center justify-between text-[10px] text-slate-400">
-          <span v-if="category === 'hitters' && p.fielding && p.fielding.length > 0" class="flex items-center gap-0.5 text-indigo-300">
-            <span class="material-symbols-outlined text-xs">shield</span> 守備査定あり ({{ p.fielding.map(f => f.pos).join('/') }})
-          </span>
+          <div v-if="category === 'hitters' && p.fielding && p.fielding.length > 0" class="flex items-center gap-1 flex-wrap overflow-hidden">
+            <span v-for="f in p.fielding.slice(0, 3)" :key="f.pos" class="inline-flex items-center gap-0.5 bg-slate-900/90 px-1.5 py-0.5 rounded border border-slate-700/80 text-[10px]">
+              <span class="text-slate-300 font-bold mr-0.5">{{ f.pos }}</span>
+              <span class="text-[9px] text-emerald-300">守</span><span :class="'rank-badge rank-' + f.defense_grade" class="px-1 text-[9px]">{{ f.defense_grade }}</span>
+              <span class="text-[9px] text-amber-300 ml-0.5" v-if="f.arm_grade">肩</span><span :class="'rank-badge rank-' + f.arm_grade" class="px-1 text-[9px]" v-if="f.arm_grade">{{ f.arm_grade }}</span>
+            </span>
+          </div>
           <div v-else-if="category === 'pitchers' && p.pitch_values && p.pitch_values.length > 0" class="flex items-center gap-1 flex-wrap overflow-hidden">
             <span v-for="pv in p.pitch_values.slice(0, 3)" :key="pv.type" class="inline-flex items-center gap-0.5 bg-slate-900/90 px-1.5 py-0.5 rounded border border-slate-700/80 text-[10px]">
               <span class="text-slate-300 font-bold mr-0.5">{{ pv.name.split('/')[0].split('(')[0] }}</span>
@@ -505,6 +527,7 @@
               
               <!-- 打者専用ヘッダー -->
               <template v-if="category === 'hitters'">
+                <th class="p-2.5 text-center">守備 [位置]</th>
                 <th @click="handleSort('pa')" class="p-2.5 text-right cursor-pointer hover:bg-slate-800">打席(PA)</th>
                 <th @click="handleSort('ops')" class="p-2.5 text-center cursor-pointer hover:bg-slate-800">OPS [ランク]</th>
                 <th @click="handleSort('wrc_plus')" class="p-2.5 text-right cursor-pointer hover:bg-slate-800">wRC+</th>
@@ -569,6 +592,15 @@
 
               <!-- 打者スタッツ -->
               <template v-if="category === 'hitters'">
+                <td class="p-2.5 text-center">
+                  <span v-if="p.main_pos !== '-'" class="inline-flex items-center gap-1">
+                    <span class="text-slate-400 text-[10px]">{{ p.main_pos }}</span>
+                    <span :class="'rank-badge rank-' + p.pawapro.defense.grade" class="px-1.5 py-0.2 text-[10px]">
+                      {{ p.pawapro.defense.grade }}
+                    </span>
+                  </span>
+                  <span v-else class="text-slate-500 font-num">-</span>
+                </td>
                 <td class="p-2.5 text-right font-num text-slate-200">{{ p.pa }}</td>
                 <td class="p-2.5 text-center">
                   <span class="font-num font-bold text-emerald-400 mr-1">{{ p.ops }}</span>
@@ -810,8 +842,11 @@
 
         <!-- 守備データ（野手の場合） -->
         <div v-if="category === 'hitters' && selectedPlayer.fielding && selectedPlayer.fielding.length > 0" class="mb-3">
-          <h3 class="text-xs font-bold text-emerald-400 uppercase tracking-wider mb-2 flex items-center gap-1.5">
-            <span class="material-symbols-outlined text-sm">shield</span> 守備位置別査定データ (TZR / 守備範囲 / 送球)
+          <h3 class="text-xs font-bold text-emerald-400 uppercase tracking-wider mb-2 flex items-center justify-between font-pawapro">
+            <span class="flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-sm">shield</span> 守備位置別 査定データ（【守備力・守備範囲・肩力・捕球】G~S査定）
+            </span>
+            <span class="text-[10px] text-slate-400 font-normal">基準: 主力守備イニング平均がD(50)</span>
           </h3>
           <div class="overflow-x-auto bg-slate-950/60 rounded-xl border border-slate-800">
             <table class="w-full text-xs text-left">
@@ -819,20 +854,44 @@
                 <tr>
                   <th class="p-2">守備位置</th>
                   <th class="p-2 text-right">イニング(Inn)</th>
-                  <th class="p-2 text-right">TZR (総合得点)</th>
-                  <th class="p-2 text-right">RngR (範囲)</th>
-                  <th class="p-2 text-right">ARM (送球)</th>
-                  <th class="p-2 text-right">ErrR (失策抑止)</th>
+                  <th class="p-2 text-center">守備力 (TZR)</th>
+                  <th class="p-2 text-center">守備範囲 (RngR)</th>
+                  <th class="p-2 text-center">肩力 (ARM)</th>
+                  <th class="p-2 text-center">捕球 (ErrR)</th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-slate-800 text-slate-300">
                 <tr v-for="f in selectedPlayer.fielding" :key="f.pos">
-                  <td class="p-2 font-bold text-white">{{ f.pos }}</td>
-                  <td class="p-2 text-right font-num">{{ f.inn }}</td>
-                  <td class="p-2 text-right font-num font-bold" :class="f.tzr >= 0 ? 'text-emerald-400' : 'text-rose-400'">{{ f.tzr > 0 ? '+' : '' }}{{ f.tzr }}</td>
-                  <td class="p-2 text-right font-num">{{ f.rngr > 0 ? '+' : '' }}{{ f.rngr }}</td>
-                  <td class="p-2 text-right font-num">{{ f.arm > 0 ? '+' : '' }}{{ f.arm }}</td>
-                  <td class="p-2 text-right font-num">{{ f.errr > 0 ? '+' : '' }}{{ f.errr }}</td>
+                  <td class="p-2 font-bold text-white flex items-center gap-1.5">
+                    <span class="bg-slate-800 text-emerald-300 text-[10px] px-1.5 py-0.5 rounded font-mono font-bold">{{ f.pos }}</span>
+                    <span>{{ f.pos_name || f.pos }}</span>
+                  </td>
+                  <td class="p-2 text-right font-num text-slate-400">{{ f.inn }}</td>
+                  <!-- 守備力 -->
+                  <td class="p-2 text-center">
+                    <span :class="'rank-badge rank-' + f.defense_grade" class="px-2 py-0.5 text-xs font-pawapro shadow-sm">
+                      {{ f.defense_grade }} <span class="font-num ml-0.5 text-[11px]">{{ f.defense_val }}</span>
+                    </span>
+                  </td>
+                  <!-- 守備範囲 -->
+                  <td class="p-2 text-center">
+                    <span :class="'rank-badge rank-' + f.range_grade" class="px-2 py-0.5 text-xs font-pawapro shadow-sm">
+                      {{ f.range_grade }} <span class="font-num ml-0.5 text-[11px]">{{ f.range_val }}</span>
+                    </span>
+                  </td>
+                  <!-- 肩力 -->
+                  <td class="p-2 text-center">
+                    <span v-if="f.arm_grade" :class="'rank-badge rank-' + f.arm_grade" class="px-2 py-0.5 text-xs font-pawapro shadow-sm">
+                      {{ f.arm_grade }} <span class="font-num ml-0.5 text-[11px]">{{ f.arm_val }}</span>
+                    </span>
+                    <span v-else class="text-slate-500 font-num">-</span>
+                  </td>
+                  <!-- 捕球 -->
+                  <td class="p-2 text-center">
+                    <span :class="'rank-badge rank-' + f.error_grade" class="px-2 py-0.5 text-xs font-pawapro shadow-sm">
+                      {{ f.error_grade }} <span class="font-num ml-0.5 text-[11px]">{{ f.error_val }}</span>
+                    </span>
+                  </td>
                 </tr>
               </tbody>
             </table>
