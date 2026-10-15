@@ -6651,23 +6651,6 @@
             "arm_grade": "E",
             "error_val": 55,
             "error_grade": "D"
-          },
-          {
-            "pos": "C",
-            "pos_name": "捕手",
-            "inn": 212.3,
-            "tzr": -1.8,
-            "rngr": 0.0,
-            "arm": -1.4,
-            "errr": -0.3,
-            "defense_val": 24,
-            "defense_grade": "F",
-            "range_val": 50,
-            "range_grade": "D",
-            "arm_val": 10,
-            "arm_grade": "G",
-            "error_val": 20,
-            "error_grade": "F"
           }
         ]
       },
@@ -16630,34 +16613,17 @@
             "label": "OPS"
           },
           "defense": {
-            "val": 41,
-            "grade": "E",
+            "val": 24,
+            "grade": "F",
             "label": "守備力(C)"
           },
           "fielding_error": {
-            "val": 55,
-            "grade": "D",
+            "val": 20,
+            "grade": "F",
             "label": "捕球/確実性"
           }
         },
         "fielding": [
-          {
-            "pos": "C",
-            "pos_name": "捕手",
-            "inn": 443.3,
-            "tzr": -0.5,
-            "rngr": 0.0,
-            "arm": -0.2,
-            "errr": 0.1,
-            "defense_val": 41,
-            "defense_grade": "E",
-            "range_val": 50,
-            "range_grade": "D",
-            "arm_val": 43,
-            "arm_grade": "E",
-            "error_val": 55,
-            "error_grade": "D"
-          },
           {
             "pos": "C",
             "pos_name": "捕手",
@@ -30036,40 +30002,6 @@
             "error_grade": "F"
           },
           {
-            "pos": "RF",
-            "pos_name": "右翼手",
-            "inn": 30.0,
-            "tzr": 0.7,
-            "rngr": 0.6,
-            "arm": 0.1,
-            "errr": 0.0,
-            "defense_val": 58,
-            "defense_grade": "D",
-            "range_val": 57,
-            "range_grade": "D",
-            "arm_val": 59,
-            "arm_grade": "D",
-            "error_val": 37,
-            "error_grade": "F"
-          },
-          {
-            "pos": "LF",
-            "pos_name": "左翼手",
-            "inn": 15.0,
-            "tzr": -1.0,
-            "rngr": -1.1,
-            "arm": 0.0,
-            "errr": 0.0,
-            "defense_val": 33,
-            "defense_grade": "F",
-            "range_val": 33,
-            "range_grade": "F",
-            "arm_val": 54,
-            "arm_grade": "D",
-            "error_val": 37,
-            "error_grade": "F"
-          },
-          {
             "pos": "LF",
             "pos_name": "左翼手",
             "inn": 3.0,
@@ -35717,7 +35649,7 @@
         "team_bg": "#F97709",
         "team_color": "#ffffff",
         "bats": "R",
-        "main_pos": "CF",
+        "main_pos": "RF",
         "is_rookie": false,
         "scope": "top",
         "is_qualified": false,
@@ -35775,9 +35707,9 @@
             "label": "OPS"
           },
           "defense": {
-            "val": 42,
-            "grade": "E",
-            "label": "守備力(CF)"
+            "val": 58,
+            "grade": "D",
+            "label": "守備力(RF)"
           },
           "fielding_error": {
             "val": 37,
@@ -35786,23 +35718,6 @@
           }
         },
         "fielding": [
-          {
-            "pos": "CF",
-            "pos_name": "中堅手",
-            "inn": 38.0,
-            "tzr": -0.4,
-            "rngr": -0.3,
-            "arm": -0.1,
-            "errr": 0.0,
-            "defense_val": 42,
-            "defense_grade": "E",
-            "range_val": 45,
-            "range_grade": "E",
-            "arm_val": 48,
-            "arm_grade": "E",
-            "error_val": 37,
-            "error_grade": "F"
-          },
           {
             "pos": "RF",
             "pos_name": "右翼手",
@@ -35832,23 +35747,6 @@
             "defense_grade": "F",
             "range_val": 33,
             "range_grade": "F",
-            "arm_val": 54,
-            "arm_grade": "D",
-            "error_val": 37,
-            "error_grade": "F"
-          },
-          {
-            "pos": "LF",
-            "pos_name": "左翼手",
-            "inn": 3.0,
-            "tzr": 0.0,
-            "rngr": 0.0,
-            "arm": 0.0,
-            "errr": 0.0,
-            "defense_val": 49,
-            "defense_grade": "E",
-            "range_val": 49,
-            "range_grade": "E",
             "arm_val": 54,
             "arm_grade": "D",
             "error_val": 37,
@@ -46836,23 +46734,6 @@
             "error_grade": "D"
           },
           {
-            "pos": "1B",
-            "pos_name": "一塁手",
-            "inn": 71.0,
-            "tzr": 0.3,
-            "rngr": -0.0,
-            "arm": null,
-            "errr": 0.3,
-            "defense_val": 55,
-            "defense_grade": "D",
-            "range_val": 49,
-            "range_grade": "E",
-            "arm_val": null,
-            "arm_grade": null,
-            "error_val": 76,
-            "error_grade": "B"
-          },
-          {
             "pos": "LF",
             "pos_name": "左翼手",
             "inn": 65.0,
@@ -46887,40 +46768,6 @@
             "error_grade": "F"
           },
           {
-            "pos": "LF",
-            "pos_name": "左翼手",
-            "inn": 41.0,
-            "tzr": 3.3,
-            "rngr": 2.1,
-            "arm": 1.1,
-            "errr": 0.0,
-            "defense_val": 87,
-            "defense_grade": "A",
-            "range_val": 79,
-            "range_grade": "B",
-            "arm_val": 87,
-            "arm_grade": "A",
-            "error_val": 35,
-            "error_grade": "F"
-          },
-          {
-            "pos": "RF",
-            "pos_name": "右翼手",
-            "inn": 41.0,
-            "tzr": -1.0,
-            "rngr": -0.4,
-            "arm": -0.6,
-            "errr": 0.0,
-            "defense_val": 33,
-            "defense_grade": "F",
-            "range_val": 42,
-            "range_grade": "E",
-            "arm_val": 27,
-            "arm_grade": "F",
-            "error_val": 35,
-            "error_grade": "F"
-          },
-          {
             "pos": "CF",
             "pos_name": "中堅手",
             "inn": 26.0,
@@ -46940,23 +46787,6 @@
           {
             "pos": "3B",
             "pos_name": "三塁手",
-            "inn": 19.0,
-            "tzr": 0.2,
-            "rngr": 0.5,
-            "arm": null,
-            "errr": -0.5,
-            "defense_val": 54,
-            "defense_grade": "D",
-            "range_val": 58,
-            "range_grade": "D",
-            "arm_val": null,
-            "arm_grade": null,
-            "error_val": 17,
-            "error_grade": "G"
-          },
-          {
-            "pos": "3B",
-            "pos_name": "三塁手",
             "inn": 17.0,
             "tzr": -0.9,
             "rngr": -0.9,
@@ -46969,23 +46799,6 @@
             "arm_val": null,
             "arm_grade": null,
             "error_val": 54,
-            "error_grade": "D"
-          },
-          {
-            "pos": "DH",
-            "pos_name": "指名打者",
-            "inn": 9.0,
-            "tzr": 0.0,
-            "rngr": 0.0,
-            "arm": null,
-            "errr": 0.0,
-            "defense_val": 50,
-            "defense_grade": "D",
-            "range_val": 50,
-            "range_grade": "D",
-            "arm_val": null,
-            "arm_grade": null,
-            "error_val": 50,
             "error_grade": "D"
           }
         ]
@@ -64742,108 +64555,6 @@
             "error_grade": "G"
           },
           {
-            "pos": "RF",
-            "pos_name": "右翼手",
-            "inn": 65.0,
-            "tzr": -0.5,
-            "rngr": -0.7,
-            "arm": 0.2,
-            "errr": 0.0,
-            "defense_val": 41,
-            "defense_grade": "E",
-            "range_val": 37,
-            "range_grade": "F",
-            "arm_val": 60,
-            "arm_grade": "C",
-            "error_val": 35,
-            "error_grade": "F"
-          },
-          {
-            "pos": "2B",
-            "pos_name": "二塁手",
-            "inn": 61.3,
-            "tzr": -0.3,
-            "rngr": -0.8,
-            "arm": null,
-            "errr": -0.2,
-            "defense_val": 45,
-            "defense_grade": "E",
-            "range_val": 35,
-            "range_grade": "F",
-            "arm_val": null,
-            "arm_grade": null,
-            "error_val": 23,
-            "error_grade": "F"
-          },
-          {
-            "pos": "LF",
-            "pos_name": "左翼手",
-            "inn": 38.0,
-            "tzr": -3.4,
-            "rngr": -3.3,
-            "arm": -0.1,
-            "errr": 0.0,
-            "defense_val": 12,
-            "defense_grade": "G",
-            "range_val": 12,
-            "range_grade": "G",
-            "arm_val": 47,
-            "arm_grade": "E",
-            "error_val": 35,
-            "error_grade": "F"
-          },
-          {
-            "pos": "3B",
-            "pos_name": "三塁手",
-            "inn": 31.0,
-            "tzr": -0.1,
-            "rngr": 0.3,
-            "arm": null,
-            "errr": -0.5,
-            "defense_val": 48,
-            "defense_grade": "E",
-            "range_val": 54,
-            "range_grade": "D",
-            "arm_val": null,
-            "arm_grade": null,
-            "error_val": 17,
-            "error_grade": "G"
-          },
-          {
-            "pos": "CF",
-            "pos_name": "中堅手",
-            "inn": 27.0,
-            "tzr": 2.2,
-            "rngr": 2.0,
-            "arm": 0.2,
-            "errr": 0.0,
-            "defense_val": 80,
-            "defense_grade": "A",
-            "range_val": 78,
-            "range_grade": "B",
-            "arm_val": 60,
-            "arm_grade": "C",
-            "error_val": 35,
-            "error_grade": "F"
-          },
-          {
-            "pos": "1B",
-            "pos_name": "一塁手",
-            "inn": 21.0,
-            "tzr": -0.3,
-            "rngr": -0.4,
-            "arm": null,
-            "errr": 0.0,
-            "defense_val": 45,
-            "defense_grade": "E",
-            "range_val": 42,
-            "range_grade": "E",
-            "arm_val": null,
-            "arm_grade": null,
-            "error_val": 35,
-            "error_grade": "F"
-          },
-          {
             "pos": "CF",
             "pos_name": "中堅手",
             "inn": 19.0,
@@ -64893,23 +64604,6 @@
             "arm_grade": "D",
             "error_val": 35,
             "error_grade": "F"
-          },
-          {
-            "pos": "DH",
-            "pos_name": "指名打者",
-            "inn": 2.0,
-            "tzr": 0.0,
-            "rngr": 0.0,
-            "arm": null,
-            "errr": 0.0,
-            "defense_val": 50,
-            "defense_grade": "D",
-            "range_val": 50,
-            "range_grade": "D",
-            "arm_val": null,
-            "arm_grade": null,
-            "error_val": 50,
-            "error_grade": "D"
           }
         ]
       },
@@ -66919,7 +66613,7 @@
         "team_bg": "#1C2D5A",
         "team_color": "#ffffff",
         "bats": "R",
-        "main_pos": "RF",
+        "main_pos": "LF",
         "is_rookie": false,
         "scope": "farm",
         "is_qualified": false,
@@ -66979,83 +66673,15 @@
           "defense": {
             "val": 78,
             "grade": "B",
-            "label": "守備力(RF)"
+            "label": "守備力(LF)"
           },
           "fielding_error": {
-            "val": 11,
-            "grade": "G",
+            "val": 35,
+            "grade": "F",
             "label": "捕球/確実性"
           }
         },
         "fielding": [
-          {
-            "pos": "RF",
-            "pos_name": "右翼手",
-            "inn": 64.7,
-            "tzr": 2.0,
-            "rngr": 2.8,
-            "arm": 0.1,
-            "errr": -0.8,
-            "defense_val": 78,
-            "defense_grade": "B",
-            "range_val": 85,
-            "range_grade": "A",
-            "arm_val": 55,
-            "arm_grade": "D",
-            "error_val": 11,
-            "error_grade": "G"
-          },
-          {
-            "pos": "DH",
-            "pos_name": "指名打者",
-            "inn": 40.0,
-            "tzr": 0.0,
-            "rngr": 0.0,
-            "arm": null,
-            "errr": 0.0,
-            "defense_val": 50,
-            "defense_grade": "D",
-            "range_val": 50,
-            "range_grade": "D",
-            "arm_val": null,
-            "arm_grade": null,
-            "error_val": 50,
-            "error_grade": "D"
-          },
-          {
-            "pos": "LF",
-            "pos_name": "左翼手",
-            "inn": 31.0,
-            "tzr": 0.4,
-            "rngr": 0.4,
-            "arm": 0.0,
-            "errr": 0.0,
-            "defense_val": 56,
-            "defense_grade": "D",
-            "range_val": 56,
-            "range_grade": "D",
-            "arm_val": 51,
-            "arm_grade": "D",
-            "error_val": 35,
-            "error_grade": "F"
-          },
-          {
-            "pos": "CF",
-            "pos_name": "中堅手",
-            "inn": 31.0,
-            "tzr": 0.2,
-            "rngr": 0.7,
-            "arm": -0.5,
-            "errr": 0.0,
-            "defense_val": 54,
-            "defense_grade": "D",
-            "range_val": 61,
-            "range_grade": "C",
-            "arm_val": 30,
-            "arm_grade": "F",
-            "error_val": 35,
-            "error_grade": "F"
-          },
           {
             "pos": "LF",
             "pos_name": "左翼手",
@@ -69033,7 +68659,7 @@
         "team_bg": "#0B1E42",
         "team_color": "#E0C068",
         "bats": "L",
-        "main_pos": "2B",
+        "main_pos": "RF",
         "is_rookie": false,
         "scope": "farm",
         "is_qualified": true,
@@ -69091,34 +68717,17 @@
             "label": "OPS"
           },
           "defense": {
-            "val": 12,
-            "grade": "G",
-            "label": "守備力(2B)"
+            "val": 41,
+            "grade": "E",
+            "label": "守備力(RF)"
           },
           "fielding_error": {
-            "val": 14,
-            "grade": "G",
+            "val": 35,
+            "grade": "F",
             "label": "捕球/確実性"
           }
         },
         "fielding": [
-          {
-            "pos": "2B",
-            "pos_name": "二塁手",
-            "inn": 99.3,
-            "tzr": -3.3,
-            "rngr": -2.7,
-            "arm": null,
-            "errr": -0.7,
-            "defense_val": 12,
-            "defense_grade": "G",
-            "range_val": 14,
-            "range_grade": "G",
-            "arm_val": null,
-            "arm_grade": null,
-            "error_val": 14,
-            "error_grade": "G"
-          },
           {
             "pos": "RF",
             "pos_name": "右翼手",
@@ -69218,57 +68827,6 @@
             "range_grade": "E",
             "arm_val": null,
             "arm_grade": null,
-            "error_val": 35,
-            "error_grade": "F"
-          },
-          {
-            "pos": "CF",
-            "pos_name": "中堅手",
-            "inn": 19.0,
-            "tzr": -0.2,
-            "rngr": 0.1,
-            "arm": -0.3,
-            "errr": 0.0,
-            "defense_val": 46,
-            "defense_grade": "E",
-            "range_val": 50,
-            "range_grade": "D",
-            "arm_val": 38,
-            "arm_grade": "F",
-            "error_val": 35,
-            "error_grade": "F"
-          },
-          {
-            "pos": "RF",
-            "pos_name": "右翼手",
-            "inn": 11.0,
-            "tzr": 0.4,
-            "rngr": 0.3,
-            "arm": 0.1,
-            "errr": 0.0,
-            "defense_val": 56,
-            "defense_grade": "D",
-            "range_val": 54,
-            "range_grade": "D",
-            "arm_val": 55,
-            "arm_grade": "D",
-            "error_val": 35,
-            "error_grade": "F"
-          },
-          {
-            "pos": "LF",
-            "pos_name": "左翼手",
-            "inn": 9.0,
-            "tzr": 0.9,
-            "rngr": 0.9,
-            "arm": 0.0,
-            "errr": 0.0,
-            "defense_val": 63,
-            "defense_grade": "C",
-            "range_val": 65,
-            "range_grade": "C",
-            "arm_val": 51,
-            "arm_grade": "D",
             "error_val": 35,
             "error_grade": "F"
           },
@@ -72668,51 +72226,17 @@
             "label": "OPS"
           },
           "defense": {
-            "val": 81,
-            "grade": "A",
+            "val": 55,
+            "grade": "D",
             "label": "守備力(1B)"
           },
           "fielding_error": {
-            "val": 89,
-            "grade": "A",
+            "val": 76,
+            "grade": "B",
             "label": "捕球/確実性"
           }
         },
         "fielding": [
-          {
-            "pos": "1B",
-            "pos_name": "一塁手",
-            "inn": 123.0,
-            "tzr": 2.4,
-            "rngr": 1.4,
-            "arm": null,
-            "errr": 0.8,
-            "defense_val": 81,
-            "defense_grade": "A",
-            "range_val": 71,
-            "range_grade": "B",
-            "arm_val": null,
-            "arm_grade": null,
-            "error_val": 89,
-            "error_grade": "A"
-          },
-          {
-            "pos": "DH",
-            "pos_name": "指名打者",
-            "inn": 85.0,
-            "tzr": 0.0,
-            "rngr": 0.0,
-            "arm": null,
-            "errr": 0.0,
-            "defense_val": 50,
-            "defense_grade": "D",
-            "range_val": 50,
-            "range_grade": "D",
-            "arm_val": null,
-            "arm_grade": null,
-            "error_val": 50,
-            "error_grade": "D"
-          },
           {
             "pos": "1B",
             "pos_name": "一塁手",
@@ -72729,40 +72253,6 @@
             "arm_grade": null,
             "error_val": 76,
             "error_grade": "B"
-          },
-          {
-            "pos": "LF",
-            "pos_name": "左翼手",
-            "inn": 65.0,
-            "tzr": 3.1,
-            "rngr": 2.5,
-            "arm": 0.6,
-            "errr": 0.0,
-            "defense_val": 86,
-            "defense_grade": "A",
-            "range_val": 83,
-            "range_grade": "A",
-            "arm_val": 74,
-            "arm_grade": "B",
-            "error_val": 35,
-            "error_grade": "F"
-          },
-          {
-            "pos": "RF",
-            "pos_name": "右翼手",
-            "inn": 46.0,
-            "tzr": 1.3,
-            "rngr": 1.4,
-            "arm": -0.1,
-            "errr": 0.0,
-            "defense_val": 67,
-            "defense_grade": "C",
-            "range_val": 71,
-            "range_grade": "B",
-            "arm_val": 47,
-            "arm_grade": "E",
-            "error_val": 35,
-            "error_grade": "F"
           },
           {
             "pos": "LF",
@@ -72799,23 +72289,6 @@
             "error_grade": "F"
           },
           {
-            "pos": "CF",
-            "pos_name": "中堅手",
-            "inn": 26.0,
-            "tzr": -0.7,
-            "rngr": -1.9,
-            "arm": 1.2,
-            "errr": 0.0,
-            "defense_val": 38,
-            "defense_grade": "F",
-            "range_val": 23,
-            "range_grade": "F",
-            "arm_val": 89,
-            "arm_grade": "A",
-            "error_val": 35,
-            "error_grade": "F"
-          },
-          {
             "pos": "3B",
             "pos_name": "三塁手",
             "inn": 19.0,
@@ -72831,23 +72304,6 @@
             "arm_grade": null,
             "error_val": 17,
             "error_grade": "G"
-          },
-          {
-            "pos": "3B",
-            "pos_name": "三塁手",
-            "inn": 17.0,
-            "tzr": -0.9,
-            "rngr": -0.9,
-            "arm": null,
-            "errr": 0.1,
-            "defense_val": 35,
-            "defense_grade": "F",
-            "range_val": 33,
-            "range_grade": "F",
-            "arm_val": null,
-            "arm_grade": null,
-            "error_val": 54,
-            "error_grade": "D"
           },
           {
             "pos": "DH",
@@ -81331,43 +80787,9 @@
             "error_grade": "F"
           },
           {
-            "pos": "C",
-            "pos_name": "捕手",
-            "inn": 58.0,
-            "tzr": -1.7,
-            "rngr": 0.0,
-            "arm": -1.4,
-            "errr": -0.1,
-            "defense_val": 25,
-            "defense_grade": "F",
-            "range_val": 50,
-            "range_grade": "D",
-            "arm_val": 9,
-            "arm_grade": "G",
-            "error_val": 26,
-            "error_grade": "F"
-          },
-          {
             "pos": "DH",
             "pos_name": "指名打者",
             "inn": 45.3,
-            "tzr": 0.0,
-            "rngr": 0.0,
-            "arm": null,
-            "errr": 0.0,
-            "defense_val": 50,
-            "defense_grade": "D",
-            "range_val": 50,
-            "range_grade": "D",
-            "arm_val": null,
-            "arm_grade": null,
-            "error_val": 50,
-            "error_grade": "D"
-          },
-          {
-            "pos": "DH",
-            "pos_name": "指名打者",
-            "inn": 23.0,
             "tzr": 0.0,
             "rngr": 0.0,
             "arm": null,
@@ -81573,29 +80995,12 @@
             "label": "守備力(C)"
           },
           "fielding_error": {
-            "val": 18,
-            "grade": "G",
+            "val": 70,
+            "grade": "B",
             "label": "捕球/確実性"
           }
         },
         "fielding": [
-          {
-            "pos": "C",
-            "pos_name": "捕手",
-            "inn": 130.0,
-            "tzr": 0.1,
-            "rngr": 0.0,
-            "arm": 0.3,
-            "errr": -0.4,
-            "defense_val": 52,
-            "defense_grade": "D",
-            "range_val": 50,
-            "range_grade": "D",
-            "arm_val": 64,
-            "arm_grade": "C",
-            "error_val": 18,
-            "error_grade": "G"
-          },
           {
             "pos": "C",
             "pos_name": "捕手",
@@ -81612,23 +81017,6 @@
             "arm_grade": "D",
             "error_val": 70,
             "error_grade": "B"
-          },
-          {
-            "pos": "DH",
-            "pos_name": "指名打者",
-            "inn": 5.0,
-            "tzr": 0.0,
-            "rngr": 0.0,
-            "arm": null,
-            "errr": 0.0,
-            "defense_val": 50,
-            "defense_grade": "D",
-            "range_val": 50,
-            "range_grade": "D",
-            "arm_val": null,
-            "arm_grade": null,
-            "error_val": 50,
-            "error_grade": "D"
           },
           {
             "pos": "DH",
@@ -102556,34 +101944,17 @@
             "label": "OPS"
           },
           "defense": {
-            "val": 55,
-            "grade": "D",
+            "val": 25,
+            "grade": "F",
             "label": "守備力(C)"
           },
           "fielding_error": {
-            "val": 35,
+            "val": 26,
             "grade": "F",
             "label": "捕球/確実性"
           }
         },
         "fielding": [
-          {
-            "pos": "C",
-            "pos_name": "捕手",
-            "inn": 103.3,
-            "tzr": 0.3,
-            "rngr": 0.0,
-            "arm": 0.3,
-            "errr": 0.0,
-            "defense_val": 55,
-            "defense_grade": "D",
-            "range_val": 50,
-            "range_grade": "D",
-            "arm_val": 64,
-            "arm_grade": "C",
-            "error_val": 35,
-            "error_grade": "F"
-          },
           {
             "pos": "C",
             "pos_name": "捕手",
@@ -102600,23 +101971,6 @@
             "arm_grade": "G",
             "error_val": 26,
             "error_grade": "F"
-          },
-          {
-            "pos": "DH",
-            "pos_name": "指名打者",
-            "inn": 45.3,
-            "tzr": 0.0,
-            "rngr": 0.0,
-            "arm": null,
-            "errr": 0.0,
-            "defense_val": 50,
-            "defense_grade": "D",
-            "range_val": 50,
-            "range_grade": "D",
-            "arm_val": null,
-            "arm_grade": null,
-            "error_val": 50,
-            "error_grade": "D"
           },
           {
             "pos": "DH",
@@ -107070,43 +106424,9 @@
             "error_grade": "G"
           },
           {
-            "pos": "C",
-            "pos_name": "捕手",
-            "inn": 78.7,
-            "tzr": 0.1,
-            "rngr": 0.0,
-            "arm": 0.1,
-            "errr": 0.2,
-            "defense_val": 52,
-            "defense_grade": "D",
-            "range_val": 50,
-            "range_grade": "D",
-            "arm_val": 55,
-            "arm_grade": "D",
-            "error_val": 70,
-            "error_grade": "B"
-          },
-          {
             "pos": "DH",
             "pos_name": "指名打者",
             "inn": 5.0,
-            "tzr": 0.0,
-            "rngr": 0.0,
-            "arm": null,
-            "errr": 0.0,
-            "defense_val": 50,
-            "defense_grade": "D",
-            "range_val": 50,
-            "range_grade": "D",
-            "arm_val": null,
-            "arm_grade": null,
-            "error_val": 50,
-            "error_grade": "D"
-          },
-          {
-            "pos": "DH",
-            "pos_name": "指名打者",
-            "inn": 2.0,
             "tzr": 0.0,
             "rngr": 0.0,
             "arm": null,
@@ -111656,57 +110976,6 @@
             "range_grade": "C",
             "arm_val": 30,
             "arm_grade": "F",
-            "error_val": 35,
-            "error_grade": "F"
-          },
-          {
-            "pos": "LF",
-            "pos_name": "左翼手",
-            "inn": 20.0,
-            "tzr": 2.0,
-            "rngr": 2.0,
-            "arm": 0.0,
-            "errr": 0.0,
-            "defense_val": 78,
-            "defense_grade": "B",
-            "range_val": 78,
-            "range_grade": "B",
-            "arm_val": 51,
-            "arm_grade": "D",
-            "error_val": 35,
-            "error_grade": "F"
-          },
-          {
-            "pos": "CF",
-            "pos_name": "中堅手",
-            "inn": 20.0,
-            "tzr": -2.1,
-            "rngr": -1.9,
-            "arm": -0.2,
-            "errr": 0.0,
-            "defense_val": 20,
-            "defense_grade": "F",
-            "range_val": 23,
-            "range_grade": "F",
-            "arm_val": 43,
-            "arm_grade": "E",
-            "error_val": 35,
-            "error_grade": "F"
-          },
-          {
-            "pos": "RF",
-            "pos_name": "右翼手",
-            "inn": 5.0,
-            "tzr": -0.4,
-            "rngr": -0.4,
-            "arm": 0.0,
-            "errr": 0.0,
-            "defense_val": 43,
-            "defense_grade": "E",
-            "range_val": 42,
-            "range_grade": "E",
-            "arm_val": 51,
-            "arm_grade": "D",
             "error_val": 35,
             "error_grade": "F"
           }
@@ -250512,26 +249781,14 @@
                 {
                   "name": "山本 祐大",
                   "inn": 443.3,
-                  "share_pct": 67.6,
-                  "alloc_war": 1.08,
+                  "share_pct": 100.0,
+                  "alloc_war": 1.6,
                   "total_war": 1.6,
                   "pa": 209,
                   "wrc_plus": 138,
                   "ops": 0.732,
                   "defense_grade": "E",
                   "defense_val": 41
-                },
-                {
-                  "name": "山本 祐大",
-                  "inn": 212.3,
-                  "share_pct": 32.4,
-                  "alloc_war": 0.52,
-                  "total_war": 1.6,
-                  "pa": 209,
-                  "wrc_plus": 138,
-                  "ops": 0.732,
-                  "defense_grade": "F",
-                  "defense_val": 24
                 },
                 {
                   "name": "渡邉 陸",
@@ -255107,21 +254364,9 @@
                 },
                 {
                   "name": "山本 祐大",
-                  "inn": 443.3,
-                  "share_pct": 67.6,
-                  "alloc_war": 0.2,
-                  "total_war": 0.3,
-                  "pa": 105,
-                  "wrc_plus": 99,
-                  "ops": 0.664,
-                  "defense_grade": "E",
-                  "defense_val": 41
-                },
-                {
-                  "name": "山本 祐大",
                   "inn": 212.3,
-                  "share_pct": 32.4,
-                  "alloc_war": 0.1,
+                  "share_pct": 100.0,
+                  "alloc_war": 0.3,
                   "total_war": 0.3,
                   "pa": 105,
                   "wrc_plus": 99,
@@ -257018,7 +256263,7 @@
               "rank_league": 4
             },
             "LF": {
-              "war": 1.3,
+              "war": 1.4,
               "players": [
                 {
                   "name": "林 安可",
@@ -257107,26 +256352,14 @@
                 {
                   "name": "若林 楽人",
                   "inn": 3.0,
-                  "share_pct": 3.5,
-                  "alloc_war": -0.0,
+                  "share_pct": 7.3,
+                  "alloc_war": -0.01,
                   "total_war": -0.1,
                   "pa": 17,
                   "wrc_plus": 27,
                   "ops": 0.437,
                   "defense_grade": "E",
                   "defense_val": 49
-                },
-                {
-                  "name": "若林 楽人",
-                  "inn": 15.0,
-                  "share_pct": 17.4,
-                  "alloc_war": -0.02,
-                  "total_war": -0.1,
-                  "pa": 17,
-                  "wrc_plus": 27,
-                  "ops": 0.437,
-                  "defense_grade": "F",
-                  "defense_val": 33
                 },
                 {
                   "name": "茶野 篤政",
@@ -257222,8 +256455,8 @@
                 {
                   "name": "若林 楽人",
                   "inn": 38.0,
-                  "share_pct": 44.2,
-                  "alloc_war": -0.04,
+                  "share_pct": 92.7,
+                  "alloc_war": -0.09,
                   "total_war": -0.1,
                   "pa": 17,
                   "wrc_plus": 27,
@@ -257260,7 +256493,7 @@
               "rank_league": 4
             },
             "RF": {
-              "war": 2.7,
+              "war": 2.8,
               "players": [
                 {
                   "name": "カナリオ",
@@ -257345,18 +256578,6 @@
                   "ops": 0.592,
                   "defense_grade": "C",
                   "defense_val": 65
-                },
-                {
-                  "name": "若林 楽人",
-                  "inn": 30.0,
-                  "share_pct": 34.9,
-                  "alloc_war": -0.03,
-                  "total_war": -0.1,
-                  "pa": 17,
-                  "wrc_plus": 27,
-                  "ops": 0.437,
-                  "defense_grade": "D",
-                  "defense_val": 58
                 },
                 {
                   "name": "茶野 篤政",
@@ -258609,18 +257830,6 @@
                   "defense_val": 52
                 },
                 {
-                  "name": "若林 楽人",
-                  "inn": 3.0,
-                  "share_pct": 3.5,
-                  "alloc_war": -0.01,
-                  "total_war": -0.2,
-                  "pa": 29,
-                  "wrc_plus": 5,
-                  "ops": 0.421,
-                  "defense_grade": "E",
-                  "defense_val": 49
-                },
-                {
                   "name": "中山 礼都",
                   "inn": 23.0,
                   "share_pct": 6.9,
@@ -258631,18 +257840,6 @@
                   "ops": 0.524,
                   "defense_grade": "D",
                   "defense_val": 51
-                },
-                {
-                  "name": "若林 楽人",
-                  "inn": 15.0,
-                  "share_pct": 17.4,
-                  "alloc_war": -0.03,
-                  "total_war": -0.2,
-                  "pa": 29,
-                  "wrc_plus": 5,
-                  "ops": 0.421,
-                  "defense_grade": "F",
-                  "defense_val": 33
                 },
                 {
                   "name": "皆川 岳飛",
@@ -258667,13 +257864,25 @@
                   "ops": 0.548,
                   "defense_grade": "E",
                   "defense_val": 43
+                },
+                {
+                  "name": "若林 楽人",
+                  "inn": 15.0,
+                  "share_pct": 33.3,
+                  "alloc_war": -0.07,
+                  "total_war": -0.2,
+                  "pa": 29,
+                  "wrc_plus": 5,
+                  "ops": 0.421,
+                  "defense_grade": "F",
+                  "defense_val": 33
                 }
               ],
               "rank_all": 8,
               "rank_league": 4
             },
             "CF": {
-              "war": 2.2,
+              "war": 2.3,
               "players": [
                 {
                   "name": "佐々木 俊輔",
@@ -258758,25 +257967,13 @@
                   "ops": 0.5,
                   "defense_grade": "D",
                   "defense_val": 51
-                },
-                {
-                  "name": "若林 楽人",
-                  "inn": 38.0,
-                  "share_pct": 44.2,
-                  "alloc_war": -0.09,
-                  "total_war": -0.2,
-                  "pa": 29,
-                  "wrc_plus": 5,
-                  "ops": 0.421,
-                  "defense_grade": "E",
-                  "defense_val": 42
                 }
               ],
               "rank_all": 4,
               "rank_league": 2
             },
             "RF": {
-              "war": 0.7,
+              "war": 0.6,
               "players": [
                 {
                   "name": "佐々木 俊輔",
@@ -258863,18 +258060,6 @@
                   "defense_val": 54
                 },
                 {
-                  "name": "若林 楽人",
-                  "inn": 30.0,
-                  "share_pct": 34.9,
-                  "alloc_war": -0.07,
-                  "total_war": -0.2,
-                  "pa": 29,
-                  "wrc_plus": 5,
-                  "ops": 0.421,
-                  "defense_grade": "D",
-                  "defense_val": 58
-                },
-                {
                   "name": "岡田 悠希",
                   "inn": 17.0,
                   "share_pct": 100.0,
@@ -258885,6 +258070,18 @@
                   "ops": 0.393,
                   "defense_grade": "D",
                   "defense_val": 59
+                },
+                {
+                  "name": "若林 楽人",
+                  "inn": 30.0,
+                  "share_pct": 66.7,
+                  "alloc_war": -0.13,
+                  "total_war": -0.2,
+                  "pa": 29,
+                  "wrc_plus": 5,
+                  "ops": 0.421,
+                  "defense_grade": "D",
+                  "defense_val": 58
                 },
                 {
                   "name": "皆川 岳飛",
@@ -258911,8 +258108,8 @@
                   "defense_val": 10
                 }
               ],
-              "rank_all": 9,
-              "rank_league": 4
+              "rank_all": 10,
+              "rank_league": 5
             },
             "DH": {
               "war": -0.2,
@@ -264867,8 +264064,8 @@
                   "defense_val": 93
                 }
               ],
-              "rank_all": 10,
-              "rank_league": 5
+              "rank_all": 9,
+              "rank_league": 4
             },
             "DH": {
               "war": -0.3,
@@ -268523,7 +267720,7 @@
           "3B": 2.6,
           "SS": 1.3,
           "LF": 3.6,
-          "CF": 1.2,
+          "CF": 1.3,
           "RF": 2.5,
           "DH": -0.2,
           "bat_total": 16.7,
@@ -268583,6 +267780,18 @@
                   "defense_val": 67
                 },
                 {
+                  "name": "盛島 稜大",
+                  "inn": 78.7,
+                  "share_pct": 100.0,
+                  "alloc_war": 0.2,
+                  "total_war": 0.2,
+                  "pa": 37,
+                  "wrc_plus": 110,
+                  "ops": 0.726,
+                  "defense_grade": "D",
+                  "defense_val": 52
+                },
+                {
                   "name": "谷川原 健太",
                   "inn": 9.0,
                   "share_pct": 47.4,
@@ -268595,18 +267804,6 @@
                   "defense_val": 55
                 },
                 {
-                  "name": "盛島 稜大",
-                  "inn": 130.0,
-                  "share_pct": 62.3,
-                  "alloc_war": 0.12,
-                  "total_war": 0.2,
-                  "pa": 37,
-                  "wrc_plus": 110,
-                  "ops": 0.726,
-                  "defense_grade": "D",
-                  "defense_val": 52
-                },
-                {
                   "name": "山本 祐大",
                   "inn": 26.0,
                   "share_pct": 100.0,
@@ -268617,18 +267814,6 @@
                   "ops": 0.787,
                   "defense_grade": "C",
                   "defense_val": 64
-                },
-                {
-                  "name": "盛島 稜大",
-                  "inn": 78.7,
-                  "share_pct": 37.7,
-                  "alloc_war": 0.08,
-                  "total_war": 0.2,
-                  "pa": 37,
-                  "wrc_plus": 110,
-                  "ops": 0.726,
-                  "defense_grade": "D",
-                  "defense_val": 52
                 },
                 {
                   "name": "石塚 綜一郎",
@@ -268783,15 +267968,15 @@
                 },
                 {
                   "name": "井上 朋也",
-                  "inn": 123.0,
-                  "share_pct": 27.4,
-                  "alloc_war": 0.11,
+                  "inn": 71.0,
+                  "share_pct": 41.3,
+                  "alloc_war": 0.17,
                   "total_war": 0.4,
                   "pa": 80,
                   "wrc_plus": 115,
                   "ops": 0.724,
-                  "defense_grade": "A",
-                  "defense_val": 81
+                  "defense_grade": "D",
+                  "defense_val": 55
                 },
                 {
                   "name": "正木 智也",
@@ -268804,18 +267989,6 @@
                   "ops": 0.702,
                   "defense_grade": "E",
                   "defense_val": 45
-                },
-                {
-                  "name": "井上 朋也",
-                  "inn": 71.0,
-                  "share_pct": 15.8,
-                  "alloc_war": 0.06,
-                  "total_war": 0.4,
-                  "pa": 80,
-                  "wrc_plus": 115,
-                  "ops": 0.724,
-                  "defense_grade": "D",
-                  "defense_val": 55
                 },
                 {
                   "name": "アルモンテ",
@@ -269120,6 +268293,18 @@
                   "defense_val": 41
                 },
                 {
+                  "name": "井上 朋也",
+                  "inn": 19.0,
+                  "share_pct": 11.0,
+                  "alloc_war": 0.04,
+                  "total_war": 0.4,
+                  "pa": 80,
+                  "wrc_plus": 115,
+                  "ops": 0.724,
+                  "defense_grade": "D",
+                  "defense_val": 54
+                },
+                {
                   "name": "秋広 優人",
                   "inn": 9.0,
                   "share_pct": 1.4,
@@ -269142,30 +268327,6 @@
                   "ops": 0.691,
                   "defense_grade": "F",
                   "defense_val": 26
-                },
-                {
-                  "name": "井上 朋也",
-                  "inn": 19.0,
-                  "share_pct": 4.2,
-                  "alloc_war": 0.02,
-                  "total_war": 0.4,
-                  "pa": 80,
-                  "wrc_plus": 115,
-                  "ops": 0.724,
-                  "defense_grade": "D",
-                  "defense_val": 54
-                },
-                {
-                  "name": "井上 朋也",
-                  "inn": 17.0,
-                  "share_pct": 3.8,
-                  "alloc_war": 0.02,
-                  "total_war": 0.4,
-                  "pa": 80,
-                  "wrc_plus": 115,
-                  "ops": 0.724,
-                  "defense_grade": "F",
-                  "defense_val": 35
                 },
                 {
                   "name": "ザイレン",
@@ -269446,6 +268607,18 @@
                   "defense_val": 35
                 },
                 {
+                  "name": "井上 朋也",
+                  "inn": 41.0,
+                  "share_pct": 23.8,
+                  "alloc_war": 0.1,
+                  "total_war": 0.4,
+                  "pa": 80,
+                  "wrc_plus": 115,
+                  "ops": 0.724,
+                  "defense_grade": "A",
+                  "defense_val": 87
+                },
+                {
                   "name": "柳町 達",
                   "inn": 9.0,
                   "share_pct": 14.5,
@@ -269456,30 +268629,6 @@
                   "ops": 0.955,
                   "defense_grade": "D",
                   "defense_val": 58
-                },
-                {
-                  "name": "井上 朋也",
-                  "inn": 65.0,
-                  "share_pct": 14.5,
-                  "alloc_war": 0.06,
-                  "total_war": 0.4,
-                  "pa": 80,
-                  "wrc_plus": 115,
-                  "ops": 0.724,
-                  "defense_grade": "A",
-                  "defense_val": 86
-                },
-                {
-                  "name": "井上 朋也",
-                  "inn": 41.0,
-                  "share_pct": 9.1,
-                  "alloc_war": 0.04,
-                  "total_war": 0.4,
-                  "pa": 80,
-                  "wrc_plus": 115,
-                  "ops": 0.724,
-                  "defense_grade": "A",
-                  "defense_val": 87
                 },
                 {
                   "name": "大友 宗",
@@ -269669,18 +268818,6 @@
                   "defense_val": 35
                 },
                 {
-                  "name": "井上 朋也",
-                  "inn": 26.0,
-                  "share_pct": 5.8,
-                  "alloc_war": 0.02,
-                  "total_war": 0.4,
-                  "pa": 80,
-                  "wrc_plus": 115,
-                  "ops": 0.724,
-                  "defense_grade": "F",
-                  "defense_val": 38
-                },
-                {
                   "name": "緒方 理貢",
                   "inn": 31.3,
                   "share_pct": 18.4,
@@ -269844,6 +268981,18 @@
                   "defense_val": 48
                 },
                 {
+                  "name": "井上 朋也",
+                  "inn": 41.0,
+                  "share_pct": 23.8,
+                  "alloc_war": 0.1,
+                  "total_war": 0.4,
+                  "pa": 80,
+                  "wrc_plus": 115,
+                  "ops": 0.724,
+                  "defense_grade": "F",
+                  "defense_val": 33
+                },
+                {
                   "name": "川村 友斗",
                   "inn": 21.0,
                   "share_pct": 33.7,
@@ -269878,30 +269027,6 @@
                   "ops": 0.614,
                   "defense_grade": "E",
                   "defense_val": 45
-                },
-                {
-                  "name": "井上 朋也",
-                  "inn": 46.0,
-                  "share_pct": 10.2,
-                  "alloc_war": 0.04,
-                  "total_war": 0.4,
-                  "pa": 80,
-                  "wrc_plus": 115,
-                  "ops": 0.724,
-                  "defense_grade": "C",
-                  "defense_val": 67
-                },
-                {
-                  "name": "井上 朋也",
-                  "inn": 41.0,
-                  "share_pct": 9.1,
-                  "alloc_war": 0.04,
-                  "total_war": 0.4,
-                  "pa": 80,
-                  "wrc_plus": 115,
-                  "ops": 0.724,
-                  "defense_grade": "F",
-                  "defense_val": 33
                 },
                 {
                   "name": "桑原 秀侍",
@@ -271029,26 +270154,14 @@
                 {
                   "name": "日渡 騰輝",
                   "inn": 58.0,
-                  "share_pct": 36.0,
-                  "alloc_war": -0.07,
+                  "share_pct": 100.0,
+                  "alloc_war": -0.2,
                   "total_war": -0.2,
                   "pa": 39,
                   "wrc_plus": 27,
                   "ops": 0.448,
                   "defense_grade": "F",
                   "defense_val": 25
-                },
-                {
-                  "name": "日渡 騰輝",
-                  "inn": 103.3,
-                  "share_pct": 64.0,
-                  "alloc_war": -0.13,
-                  "total_war": -0.2,
-                  "pa": 39,
-                  "wrc_plus": 27,
-                  "ops": 0.448,
-                  "defense_grade": "D",
-                  "defense_val": 55
                 }
               ],
               "rank_all": 2,
@@ -273122,6 +272235,18 @@
                   "defense_val": 89
                 },
                 {
+                  "name": "井上 朋也",
+                  "inn": 123.0,
+                  "share_pct": 44.4,
+                  "alloc_war": 0.93,
+                  "total_war": 2.1,
+                  "pa": 193,
+                  "wrc_plus": 169,
+                  "ops": 0.974,
+                  "defense_grade": "A",
+                  "defense_val": 81
+                },
+                {
                   "name": "小田 康一郎",
                   "inn": 181.7,
                   "share_pct": 23.0,
@@ -273134,18 +272259,6 @@
                   "defense_val": 91
                 },
                 {
-                  "name": "井上 朋也",
-                  "inn": 123.0,
-                  "share_pct": 27.4,
-                  "alloc_war": 0.58,
-                  "total_war": 2.1,
-                  "pa": 193,
-                  "wrc_plus": 169,
-                  "ops": 0.974,
-                  "defense_grade": "A",
-                  "defense_val": 81
-                },
-                {
                   "name": "加藤 響",
                   "inn": 219.0,
                   "share_pct": 35.9,
@@ -273156,18 +272269,6 @@
                   "ops": 0.703,
                   "defense_grade": "G",
                   "defense_val": 5
-                },
-                {
-                  "name": "井上 朋也",
-                  "inn": 71.0,
-                  "share_pct": 15.8,
-                  "alloc_war": 0.33,
-                  "total_war": 2.1,
-                  "pa": 193,
-                  "wrc_plus": 169,
-                  "ops": 0.974,
-                  "defense_grade": "D",
-                  "defense_val": 55
                 },
                 {
                   "name": "九鬼 隆平",
@@ -273509,21 +272610,9 @@
                 },
                 {
                   "name": "井上 朋也",
-                  "inn": 19.0,
-                  "share_pct": 4.2,
-                  "alloc_war": 0.09,
-                  "total_war": 2.1,
-                  "pa": 193,
-                  "wrc_plus": 169,
-                  "ops": 0.974,
-                  "defense_grade": "D",
-                  "defense_val": 54
-                },
-                {
-                  "name": "井上 朋也",
                   "inn": 17.0,
-                  "share_pct": 3.8,
-                  "alloc_war": 0.08,
+                  "share_pct": 6.1,
+                  "alloc_war": 0.13,
                   "total_war": 2.1,
                   "pa": 193,
                   "wrc_plus": 169,
@@ -273750,6 +272839,18 @@
                   "defense_val": 11
                 },
                 {
+                  "name": "井上 朋也",
+                  "inn": 65.0,
+                  "share_pct": 23.5,
+                  "alloc_war": 0.49,
+                  "total_war": 2.1,
+                  "pa": 193,
+                  "wrc_plus": 169,
+                  "ops": 0.974,
+                  "defense_grade": "A",
+                  "defense_val": 86
+                },
+                {
                   "name": "東妻 純平",
                   "inn": 187.0,
                   "share_pct": 48.9,
@@ -273774,18 +272875,6 @@
                   "defense_val": 41
                 },
                 {
-                  "name": "井上 朋也",
-                  "inn": 65.0,
-                  "share_pct": 14.5,
-                  "alloc_war": 0.3,
-                  "total_war": 2.1,
-                  "pa": 193,
-                  "wrc_plus": 169,
-                  "ops": 0.974,
-                  "defense_grade": "A",
-                  "defense_val": 86
-                },
-                {
                   "name": "勝又 温史",
                   "inn": 39.0,
                   "share_pct": 42.9,
@@ -273808,18 +272897,6 @@
                   "ops": 0.819,
                   "defense_grade": "B",
                   "defense_val": 75
-                },
-                {
-                  "name": "井上 朋也",
-                  "inn": 41.0,
-                  "share_pct": 9.1,
-                  "alloc_war": 0.19,
-                  "total_war": 2.1,
-                  "pa": 193,
-                  "wrc_plus": 169,
-                  "ops": 0.974,
-                  "defense_grade": "A",
-                  "defense_val": 87
                 },
                 {
                   "name": "高見澤 郁魅",
@@ -273910,7 +272987,7 @@
               "rank_league": 1
             },
             "CF": {
-              "war": 2.1,
+              "war": 2.2,
               "players": [
                 {
                   "name": "森 敬斗",
@@ -273937,6 +273014,18 @@
                   "defense_val": 83
                 },
                 {
+                  "name": "井上 朋也",
+                  "inn": 26.0,
+                  "share_pct": 9.4,
+                  "alloc_war": 0.2,
+                  "total_war": 2.1,
+                  "pa": 193,
+                  "wrc_plus": 169,
+                  "ops": 0.974,
+                  "defense_grade": "F",
+                  "defense_val": 38
+                },
+                {
                   "name": "関根 大気",
                   "inn": 37.0,
                   "share_pct": 9.4,
@@ -273947,18 +273036,6 @@
                   "ops": 0.82,
                   "defense_grade": "E",
                   "defense_val": 41
-                },
-                {
-                  "name": "井上 朋也",
-                  "inn": 26.0,
-                  "share_pct": 5.8,
-                  "alloc_war": 0.12,
-                  "total_war": 2.1,
-                  "pa": 193,
-                  "wrc_plus": 169,
-                  "ops": 0.974,
-                  "defense_grade": "F",
-                  "defense_val": 38
                 },
                 {
                   "name": "東妻 純平",
@@ -274064,6 +273141,18 @@
                   "defense_val": 27
                 },
                 {
+                  "name": "井上 朋也",
+                  "inn": 46.0,
+                  "share_pct": 16.6,
+                  "alloc_war": 0.35,
+                  "total_war": 2.1,
+                  "pa": 193,
+                  "wrc_plus": 169,
+                  "ops": 0.974,
+                  "defense_grade": "C",
+                  "defense_val": 67
+                },
+                {
                   "name": "勝又 温史",
                   "inn": 38.0,
                   "share_pct": 41.8,
@@ -274086,30 +273175,6 @@
                   "ops": 0.737,
                   "defense_grade": "B",
                   "defense_val": 78
-                },
-                {
-                  "name": "井上 朋也",
-                  "inn": 46.0,
-                  "share_pct": 10.2,
-                  "alloc_war": 0.22,
-                  "total_war": 2.1,
-                  "pa": 193,
-                  "wrc_plus": 169,
-                  "ops": 0.974,
-                  "defense_grade": "C",
-                  "defense_val": 67
-                },
-                {
-                  "name": "井上 朋也",
-                  "inn": 41.0,
-                  "share_pct": 9.1,
-                  "alloc_war": 0.19,
-                  "total_war": 2.1,
-                  "pa": 193,
-                  "wrc_plus": 169,
-                  "ops": 0.974,
-                  "defense_grade": "F",
-                  "defense_val": 33
                 },
                 {
                   "name": "井上 絢登",
@@ -275726,7 +274791,7 @@
               "rank_league": 2
             },
             "LF": {
-              "war": 3.8,
+              "war": 3.9,
               "players": [
                 {
                   "name": "仲三 優太",
@@ -275766,15 +274831,15 @@
                 },
                 {
                   "name": "若林 楽人",
-                  "inn": 31.0,
-                  "share_pct": 18.1,
-                  "alloc_war": 0.11,
+                  "inn": 20.0,
+                  "share_pct": 44.4,
+                  "alloc_war": 0.27,
                   "total_war": 0.6,
                   "pa": 24,
                   "wrc_plus": 306,
                   "ops": 1.446,
-                  "defense_grade": "D",
-                  "defense_val": 56
+                  "defense_grade": "B",
+                  "defense_val": 78
                 },
                 {
                   "name": "茶野 篤政",
@@ -275787,18 +274852,6 @@
                   "ops": 0.7,
                   "defense_grade": "B",
                   "defense_val": 73
-                },
-                {
-                  "name": "若林 楽人",
-                  "inn": 20.0,
-                  "share_pct": 11.6,
-                  "alloc_war": 0.07,
-                  "total_war": 0.6,
-                  "pa": 24,
-                  "wrc_plus": 306,
-                  "ops": 1.446,
-                  "defense_grade": "B",
-                  "defense_val": 78
                 },
                 {
                   "name": "秋山 俊",
@@ -275964,6 +275017,18 @@
                   "defense_val": 61
                 },
                 {
+                  "name": "若林 楽人",
+                  "inn": 20.0,
+                  "share_pct": 44.4,
+                  "alloc_war": 0.27,
+                  "total_war": 0.6,
+                  "pa": 24,
+                  "wrc_plus": 306,
+                  "ops": 1.446,
+                  "defense_grade": "F",
+                  "defense_val": 20
+                },
+                {
                   "name": "長谷川 信哉",
                   "inn": 27.7,
                   "share_pct": 52.6,
@@ -275974,18 +275039,6 @@
                   "ops": 0.955,
                   "defense_grade": "F",
                   "defense_val": 20
-                },
-                {
-                  "name": "若林 楽人",
-                  "inn": 31.0,
-                  "share_pct": 18.1,
-                  "alloc_war": 0.11,
-                  "total_war": 0.6,
-                  "pa": 24,
-                  "wrc_plus": 306,
-                  "ops": 1.446,
-                  "defense_grade": "D",
-                  "defense_val": 54
                 },
                 {
                   "name": "秋山 俊",
@@ -276034,18 +275087,6 @@
                   "ops": 0.7,
                   "defense_grade": "F",
                   "defense_val": 31
-                },
-                {
-                  "name": "若林 楽人",
-                  "inn": 20.0,
-                  "share_pct": 11.6,
-                  "alloc_war": 0.07,
-                  "total_war": 0.6,
-                  "pa": 24,
-                  "wrc_plus": 306,
-                  "ops": 1.446,
-                  "defense_grade": "F",
-                  "defense_val": 20
                 },
                 {
                   "name": "福尾 遥真",
@@ -276124,7 +275165,7 @@
               "rank_league": 4
             },
             "RF": {
-              "war": 2.4,
+              "war": 2.3,
               "players": [
                 {
                   "name": "仲三 優太",
@@ -276163,18 +275204,6 @@
                   "defense_val": 62
                 },
                 {
-                  "name": "若林 楽人",
-                  "inn": 64.7,
-                  "share_pct": 37.7,
-                  "alloc_war": 0.23,
-                  "total_war": 0.6,
-                  "pa": 24,
-                  "wrc_plus": 306,
-                  "ops": 1.446,
-                  "defense_grade": "B",
-                  "defense_val": 78
-                },
-                {
                   "name": "茶野 篤政",
                   "inn": 157.7,
                   "share_pct": 56.5,
@@ -276211,6 +275240,18 @@
                   "defense_val": 83
                 },
                 {
+                  "name": "若林 楽人",
+                  "inn": 5.0,
+                  "share_pct": 11.1,
+                  "alloc_war": 0.07,
+                  "total_war": 0.6,
+                  "pa": 24,
+                  "wrc_plus": 306,
+                  "ops": 1.446,
+                  "defense_grade": "E",
+                  "defense_val": 43
+                },
+                {
                   "name": "川田 悠慎",
                   "inn": 117.7,
                   "share_pct": 26.3,
@@ -276231,18 +275272,6 @@
                   "pa": 82,
                   "wrc_plus": 88,
                   "ops": 0.651,
-                  "defense_grade": "E",
-                  "defense_val": 43
-                },
-                {
-                  "name": "若林 楽人",
-                  "inn": 5.0,
-                  "share_pct": 2.9,
-                  "alloc_war": 0.02,
-                  "total_war": 0.6,
-                  "pa": 24,
-                  "wrc_plus": 306,
-                  "ops": 1.446,
                   "defense_grade": "E",
                   "defense_val": 43
                 },
@@ -277532,8 +276561,8 @@
                   "defense_val": 56
                 }
               ],
-              "rank_all": 6,
-              "rank_league": 2
+              "rank_all": 7,
+              "rank_league": 3
             },
             "3B": {
               "war": 1.3,
@@ -277998,21 +277027,9 @@
                 },
                 {
                   "name": "若林 楽人",
-                  "inn": 20.0,
-                  "share_pct": 11.6,
-                  "alloc_war": -0.07,
-                  "total_war": -0.6,
-                  "pa": 83,
-                  "wrc_plus": 10,
-                  "ops": 0.47,
-                  "defense_grade": "B",
-                  "defense_val": 78
-                },
-                {
-                  "name": "若林 楽人",
                   "inn": 31.0,
-                  "share_pct": 18.1,
-                  "alloc_war": -0.11,
+                  "share_pct": 24.5,
+                  "alloc_war": -0.15,
                   "total_war": -0.6,
                   "pa": 83,
                   "wrc_plus": 10,
@@ -278025,7 +277042,7 @@
               "rank_league": 3
             },
             "CF": {
-              "war": 3.1,
+              "war": 3.2,
               "players": [
                 {
                   "name": "浅野 翔吾",
@@ -278208,30 +277225,6 @@
                   "defense_val": 49
                 },
                 {
-                  "name": "若林 楽人",
-                  "inn": 20.0,
-                  "share_pct": 11.6,
-                  "alloc_war": -0.07,
-                  "total_war": -0.6,
-                  "pa": 83,
-                  "wrc_plus": 10,
-                  "ops": 0.47,
-                  "defense_grade": "F",
-                  "defense_val": 20
-                },
-                {
-                  "name": "若林 楽人",
-                  "inn": 31.0,
-                  "share_pct": 18.1,
-                  "alloc_war": -0.11,
-                  "total_war": -0.6,
-                  "pa": 83,
-                  "wrc_plus": 10,
-                  "ops": 0.47,
-                  "defense_grade": "D",
-                  "defense_val": 54
-                },
-                {
                   "name": "鈴木 大和",
                   "inn": 293.3,
                   "share_pct": 74.4,
@@ -278242,13 +277235,25 @@
                   "ops": 0.546,
                   "defense_grade": "S",
                   "defense_val": 96
+                },
+                {
+                  "name": "若林 楽人",
+                  "inn": 31.0,
+                  "share_pct": 24.5,
+                  "alloc_war": -0.15,
+                  "total_war": -0.6,
+                  "pa": 83,
+                  "wrc_plus": 10,
+                  "ops": 0.47,
+                  "defense_grade": "D",
+                  "defense_val": 54
                 }
               ],
               "rank_all": 2,
               "rank_league": 1
             },
             "RF": {
-              "war": 3.1,
+              "war": 3.0,
               "players": [
                 {
                   "name": "皆川 岳飛",
@@ -278384,21 +277389,9 @@
                 },
                 {
                   "name": "若林 楽人",
-                  "inn": 5.0,
-                  "share_pct": 2.9,
-                  "alloc_war": -0.02,
-                  "total_war": -0.6,
-                  "pa": 83,
-                  "wrc_plus": 10,
-                  "ops": 0.47,
-                  "defense_grade": "E",
-                  "defense_val": 43
-                },
-                {
-                  "name": "若林 楽人",
                   "inn": 64.7,
-                  "share_pct": 37.7,
-                  "alloc_war": -0.23,
+                  "share_pct": 51.1,
+                  "alloc_war": -0.31,
                   "total_war": -0.6,
                   "pa": 83,
                   "wrc_plus": 10,
@@ -281760,7 +280753,7 @@
                   "defense_val": 9
                 }
               ],
-              "rank_all": 7,
+              "rank_all": 8,
               "rank_league": 5
             },
             "3B": {
@@ -283332,26 +282325,14 @@
                 {
                   "name": "日渡 騰輝",
                   "inn": 103.3,
-                  "share_pct": 64.0,
-                  "alloc_war": 0.13,
+                  "share_pct": 100.0,
+                  "alloc_war": 0.2,
                   "total_war": 0.2,
                   "pa": 69,
                   "wrc_plus": 93,
                   "ops": 0.693,
                   "defense_grade": "D",
                   "defense_val": 55
-                },
-                {
-                  "name": "日渡 騰輝",
-                  "inn": 58.0,
-                  "share_pct": 36.0,
-                  "alloc_war": 0.07,
-                  "total_war": 0.2,
-                  "pa": 69,
-                  "wrc_plus": 93,
-                  "ops": 0.693,
-                  "defense_grade": "F",
-                  "defense_val": 25
                 },
                 {
                   "name": "加藤 匠馬",
@@ -286547,8 +285528,8 @@
                   "defense_val": 93
                 }
               ],
-              "rank_all": 9,
-              "rank_league": 4
+              "rank_all": 8,
+              "rank_league": 3
             },
             "DH": {
               "war": 0.0,
@@ -287373,7 +286354,7 @@
               "rank_league": 4
             },
             "1B": {
-              "war": 1.4,
+              "war": 1.5,
               "players": [
                 {
                   "name": "山中 稜真",
@@ -287438,8 +286419,8 @@
                 {
                   "name": "遠藤 成",
                   "inn": 21.0,
-                  "share_pct": 5.5,
-                  "alloc_war": 0.03,
+                  "share_pct": 8.6,
+                  "alloc_war": 0.04,
                   "total_war": 0.5,
                   "pa": 113,
                   "wrc_plus": 110,
@@ -287488,7 +286469,7 @@
               "rank_league": 6
             },
             "2B": {
-              "war": 2.5,
+              "war": 2.4,
               "players": [
                 {
                   "name": "宜保 翔",
@@ -287552,21 +286533,9 @@
                 },
                 {
                   "name": "遠藤 成",
-                  "inn": 99.3,
-                  "share_pct": 26.0,
-                  "alloc_war": 0.13,
-                  "total_war": 0.5,
-                  "pa": 113,
-                  "wrc_plus": 110,
-                  "ops": 0.628,
-                  "defense_grade": "G",
-                  "defense_val": 12
-                },
-                {
-                  "name": "遠藤 成",
                   "inn": 61.3,
-                  "share_pct": 16.1,
-                  "alloc_war": 0.08,
+                  "share_pct": 25.2,
+                  "alloc_war": 0.13,
                   "total_war": 0.5,
                   "pa": 113,
                   "wrc_plus": 110,
@@ -287738,6 +286707,18 @@
                   "defense_val": 43
                 },
                 {
+                  "name": "遠藤 成",
+                  "inn": 31.0,
+                  "share_pct": 12.7,
+                  "alloc_war": 0.06,
+                  "total_war": 0.5,
+                  "pa": 113,
+                  "wrc_plus": 110,
+                  "ops": 0.628,
+                  "defense_grade": "E",
+                  "defense_val": 48
+                },
+                {
                   "name": "横山 聖哉",
                   "inn": 52.0,
                   "share_pct": 7.0,
@@ -287748,18 +286729,6 @@
                   "ops": 0.631,
                   "defense_grade": "G",
                   "defense_val": 16
-                },
-                {
-                  "name": "遠藤 成",
-                  "inn": 31.0,
-                  "share_pct": 8.1,
-                  "alloc_war": 0.04,
-                  "total_war": 0.5,
-                  "pa": 113,
-                  "wrc_plus": 110,
-                  "ops": 0.628,
-                  "defense_grade": "E",
-                  "defense_val": 48
                 },
                 {
                   "name": "今坂 幸暉",
@@ -287980,6 +286949,18 @@
                   "defense_val": 46
                 },
                 {
+                  "name": "遠藤 成",
+                  "inn": 38.0,
+                  "share_pct": 15.6,
+                  "alloc_war": 0.08,
+                  "total_war": 0.5,
+                  "pa": 113,
+                  "wrc_plus": 110,
+                  "ops": 0.628,
+                  "defense_grade": "G",
+                  "defense_val": 12
+                },
+                {
                   "name": "山中 稜真",
                   "inn": 17.0,
                   "share_pct": 5.7,
@@ -287990,18 +286971,6 @@
                   "ops": 0.715,
                   "defense_grade": "B",
                   "defense_val": 76
-                },
-                {
-                  "name": "遠藤 成",
-                  "inn": 38.0,
-                  "share_pct": 10.0,
-                  "alloc_war": 0.05,
-                  "total_war": 0.5,
-                  "pa": 113,
-                  "wrc_plus": 110,
-                  "ops": 0.628,
-                  "defense_grade": "G",
-                  "defense_val": 12
                 },
                 {
                   "name": "渡部 遼人",
@@ -288038,18 +287007,6 @@
                   "ops": 0.78,
                   "defense_grade": "D",
                   "defense_val": 52
-                },
-                {
-                  "name": "遠藤 成",
-                  "inn": 9.0,
-                  "share_pct": 2.4,
-                  "alloc_war": 0.01,
-                  "total_war": 0.5,
-                  "pa": 113,
-                  "wrc_plus": 110,
-                  "ops": 0.628,
-                  "defense_grade": "C",
-                  "defense_val": 63
                 },
                 {
                   "name": "元 謙太",
@@ -288157,26 +287114,14 @@
                 {
                   "name": "遠藤 成",
                   "inn": 27.0,
-                  "share_pct": 7.1,
-                  "alloc_war": 0.04,
+                  "share_pct": 11.1,
+                  "alloc_war": 0.06,
                   "total_war": 0.5,
                   "pa": 113,
                   "wrc_plus": 110,
                   "ops": 0.628,
                   "defense_grade": "A",
                   "defense_val": 80
-                },
-                {
-                  "name": "遠藤 成",
-                  "inn": 19.0,
-                  "share_pct": 5.0,
-                  "alloc_war": 0.02,
-                  "total_war": 0.5,
-                  "pa": 113,
-                  "wrc_plus": 110,
-                  "ops": 0.628,
-                  "defense_grade": "E",
-                  "defense_val": 46
                 },
                 {
                   "name": "来田 涼斗",
@@ -288243,7 +287188,7 @@
               "rank_league": 6
             },
             "RF": {
-              "war": 2.5,
+              "war": 2.6,
               "players": [
                 {
                   "name": "杉本 裕太郎",
@@ -288306,6 +287251,18 @@
                   "defense_val": 75
                 },
                 {
+                  "name": "遠藤 成",
+                  "inn": 65.0,
+                  "share_pct": 26.7,
+                  "alloc_war": 0.13,
+                  "total_war": 0.5,
+                  "pa": 113,
+                  "wrc_plus": 110,
+                  "ops": 0.628,
+                  "defense_grade": "E",
+                  "defense_val": 41
+                },
+                {
                   "name": "寺本 聖一",
                   "inn": 142.0,
                   "share_pct": 30.6,
@@ -288316,18 +287273,6 @@
                   "ops": 0.626,
                   "defense_grade": "A",
                   "defense_val": 82
-                },
-                {
-                  "name": "遠藤 成",
-                  "inn": 65.0,
-                  "share_pct": 17.0,
-                  "alloc_war": 0.09,
-                  "total_war": 0.5,
-                  "pa": 113,
-                  "wrc_plus": 110,
-                  "ops": 0.628,
-                  "defense_grade": "E",
-                  "defense_val": 41
                 },
                 {
                   "name": "麦谷 祐介",
@@ -288352,18 +287297,6 @@
                   "ops": 0.628,
                   "defense_grade": "S",
                   "defense_val": 92
-                },
-                {
-                  "name": "遠藤 成",
-                  "inn": 11.0,
-                  "share_pct": 2.9,
-                  "alloc_war": 0.01,
-                  "total_war": 0.5,
-                  "pa": 113,
-                  "wrc_plus": 110,
-                  "ops": 0.628,
-                  "defense_grade": "D",
-                  "defense_val": 56
                 },
                 {
                   "name": "元 謙太",
@@ -291440,18 +290373,6 @@
                   "defense_val": 52
                 },
                 {
-                  "name": "遠藤 成",
-                  "inn": 21.0,
-                  "share_pct": 5.5,
-                  "alloc_war": 0.03,
-                  "total_war": 0.6,
-                  "pa": 63,
-                  "wrc_plus": 149,
-                  "ops": 0.844,
-                  "defense_grade": "E",
-                  "defense_val": 45
-                },
-                {
                   "name": "山田 哲人",
                   "inn": 18.0,
                   "share_pct": 85.7,
@@ -291564,7 +290485,7 @@
               "rank_league": 6
             },
             "2B": {
-              "war": 1.6,
+              "war": 1.8,
               "players": [
                 {
                   "name": "石井 巧",
@@ -291591,6 +290512,18 @@
                   "defense_val": 86
                 },
                 {
+                  "name": "遠藤 成",
+                  "inn": 99.3,
+                  "share_pct": 71.8,
+                  "alloc_war": 0.43,
+                  "total_war": 0.6,
+                  "pa": 63,
+                  "wrc_plus": 149,
+                  "ops": 0.844,
+                  "defense_grade": "G",
+                  "defense_val": 12
+                },
+                {
                   "name": "山野辺 翔",
                   "inn": 107.0,
                   "share_pct": 36.1,
@@ -291615,18 +290548,6 @@
                   "defense_val": 48
                 },
                 {
-                  "name": "遠藤 成",
-                  "inn": 99.3,
-                  "share_pct": 26.0,
-                  "alloc_war": 0.16,
-                  "total_war": 0.6,
-                  "pa": 63,
-                  "wrc_plus": 149,
-                  "ops": 0.844,
-                  "defense_grade": "G",
-                  "defense_val": 12
-                },
-                {
                   "name": "田中 陽翔",
                   "inn": 125.3,
                   "share_pct": 26.6,
@@ -291637,18 +290558,6 @@
                   "ops": 0.658,
                   "defense_grade": "E",
                   "defense_val": 41
-                },
-                {
-                  "name": "遠藤 成",
-                  "inn": 61.3,
-                  "share_pct": 16.1,
-                  "alloc_war": 0.1,
-                  "total_war": 0.6,
-                  "pa": 63,
-                  "wrc_plus": 149,
-                  "ops": 0.844,
-                  "defense_grade": "E",
-                  "defense_val": 45
                 },
                 {
                   "name": "赤羽 由紘",
@@ -291735,8 +290644,8 @@
                   "defense_val": 31
                 }
               ],
-              "rank_all": 8,
-              "rank_league": 3
+              "rank_all": 6,
+              "rank_league": 2
             },
             "3B": {
               "war": 0.5,
@@ -291812,18 +290721,6 @@
                   "ops": 0.767,
                   "defense_grade": "C",
                   "defense_val": 62
-                },
-                {
-                  "name": "遠藤 成",
-                  "inn": 31.0,
-                  "share_pct": 8.1,
-                  "alloc_war": 0.05,
-                  "total_war": 0.6,
-                  "pa": 63,
-                  "wrc_plus": 149,
-                  "ops": 0.844,
-                  "defense_grade": "E",
-                  "defense_val": 48
                 },
                 {
                   "name": "赤羽 由紘",
@@ -292057,15 +290954,15 @@
                 },
                 {
                   "name": "遠藤 成",
-                  "inn": 38.0,
-                  "share_pct": 10.0,
-                  "alloc_war": 0.06,
+                  "inn": 9.0,
+                  "share_pct": 6.5,
+                  "alloc_war": 0.04,
                   "total_war": 0.6,
                   "pa": 63,
                   "wrc_plus": 149,
                   "ops": 0.844,
-                  "defense_grade": "G",
-                  "defense_val": 12
+                  "defense_grade": "C",
+                  "defense_val": 63
                 },
                 {
                   "name": "山野辺 翔",
@@ -292102,18 +290999,6 @@
                   "ops": 0.69,
                   "defense_grade": "C",
                   "defense_val": 60
-                },
-                {
-                  "name": "遠藤 成",
-                  "inn": 9.0,
-                  "share_pct": 2.4,
-                  "alloc_war": 0.01,
-                  "total_war": 0.6,
-                  "pa": 63,
-                  "wrc_plus": 149,
-                  "ops": 0.844,
-                  "defense_grade": "C",
-                  "defense_val": 63
                 },
                 {
                   "name": "赤羽 由紘",
@@ -292244,21 +291129,9 @@
                 },
                 {
                   "name": "遠藤 成",
-                  "inn": 27.0,
-                  "share_pct": 7.1,
-                  "alloc_war": 0.04,
-                  "total_war": 0.6,
-                  "pa": 63,
-                  "wrc_plus": 149,
-                  "ops": 0.844,
-                  "defense_grade": "A",
-                  "defense_val": 80
-                },
-                {
-                  "name": "遠藤 成",
                   "inn": 19.0,
-                  "share_pct": 5.0,
-                  "alloc_war": 0.03,
+                  "share_pct": 13.7,
+                  "alloc_war": 0.08,
                   "total_war": 0.6,
                   "pa": 63,
                   "wrc_plus": 149,
@@ -292307,7 +291180,7 @@
               "rank_league": 5
             },
             "RF": {
-              "war": 2.3,
+              "war": 2.2,
               "players": [
                 {
                   "name": "塩見 泰隆",
@@ -292358,18 +291231,6 @@
                   "defense_val": 86
                 },
                 {
-                  "name": "遠藤 成",
-                  "inn": 65.0,
-                  "share_pct": 17.0,
-                  "alloc_war": 0.1,
-                  "total_war": 0.6,
-                  "pa": 63,
-                  "wrc_plus": 149,
-                  "ops": 0.844,
-                  "defense_grade": "E",
-                  "defense_val": 41
-                },
-                {
                   "name": "モイセエフ ニキータ",
                   "inn": 210.0,
                   "share_pct": 40.2,
@@ -292394,6 +291255,18 @@
                   "defense_val": 32
                 },
                 {
+                  "name": "遠藤 成",
+                  "inn": 11.0,
+                  "share_pct": 8.0,
+                  "alloc_war": 0.05,
+                  "total_war": 0.6,
+                  "pa": 63,
+                  "wrc_plus": 149,
+                  "ops": 0.844,
+                  "defense_grade": "D",
+                  "defense_val": 56
+                },
+                {
                   "name": "並木 秀尊",
                   "inn": 20.0,
                   "share_pct": 15.7,
@@ -292416,18 +291289,6 @@
                   "ops": 0.767,
                   "defense_grade": "E",
                   "defense_val": 46
-                },
-                {
-                  "name": "遠藤 成",
-                  "inn": 11.0,
-                  "share_pct": 2.9,
-                  "alloc_war": 0.02,
-                  "total_war": 0.6,
-                  "pa": 63,
-                  "wrc_plus": 149,
-                  "ops": 0.844,
-                  "defense_grade": "D",
-                  "defense_val": 56
                 },
                 {
                   "name": "赤羽 由紘",
@@ -292478,8 +291339,8 @@
                   "defense_val": 64
                 }
               ],
-              "rank_all": 8,
-              "rank_league": 3
+              "rank_all": 9,
+              "rank_league": 4
             },
             "DH": {
               "war": 0.1,
@@ -294538,21 +293399,9 @@
                 },
                 {
                   "name": "盛島 稜大",
-                  "inn": 78.7,
-                  "share_pct": 37.7,
-                  "alloc_war": -0.11,
-                  "total_war": -0.3,
-                  "pa": 57,
-                  "wrc_plus": 22,
-                  "ops": 0.497,
-                  "defense_grade": "D",
-                  "defense_val": 52
-                },
-                {
-                  "name": "盛島 稜大",
                   "inn": 130.0,
-                  "share_pct": 62.3,
-                  "alloc_war": -0.19,
+                  "share_pct": 100.0,
+                  "alloc_war": -0.3,
                   "total_war": -0.3,
                   "pa": 57,
                   "wrc_plus": 22,
@@ -295567,7 +294416,7 @@
           "SS": 1.3,
           "LF": 2.2,
           "CF": 1.7,
-          "RF": 2.4,
+          "RF": 2.3,
           "DH": 0.0,
           "bat_total": 12.5,
           "sp": 4.7,
