@@ -88,6 +88,36 @@
       background-color: #0f172a;
     }
 
+    /* ポジションマトリクス用 2列固定 */
+    .sticky-pos-rank {
+      position: sticky;
+      left: 0;
+      background-color: #1e293b;
+      z-index: 10;
+    }
+    .sticky-pos-team {
+      position: sticky;
+      left: 42px;
+      background-color: #1e293b;
+      z-index: 10;
+    }
+    thead th.sticky-pos-rank {
+      z-index: 20;
+      background-color: #0f172a;
+    }
+    thead th.sticky-pos-team {
+      z-index: 20;
+      background-color: #0f172a;
+    }
+
+    /* ヒートマップ用スタイル */
+    .heatmap-tier-5 { background: rgba(5, 150, 105, 0.4); color: #6ee7b7; border: 1px solid rgba(52, 211, 153, 0.5); }
+    .heatmap-tier-4 { background: rgba(13, 148, 136, 0.3); color: #5eead4; border: 1px solid rgba(45, 212, 191, 0.35); }
+    .heatmap-tier-3 { background: rgba(14, 116, 144, 0.25); color: #67e8f9; border: 1px solid rgba(34, 211, 238, 0.25); }
+    .heatmap-tier-2 { background: rgba(30, 41, 59, 0.6); color: #cbd5e1; border: 1px solid rgba(100, 116, 139, 0.2); }
+    .heatmap-tier-1 { background: rgba(180, 83, 9, 0.35); color: #fcd34d; border: 1px solid rgba(251, 191, 36, 0.3); }
+    .heatmap-tier-0 { background: rgba(225, 29, 72, 0.4); color: #fda4af; border: 1px solid rgba(244, 63, 94, 0.45); }
+
     /* カスタムスクロールバー */
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: #0f172a; }
@@ -147,7 +177,7 @@
     <!-- コントロールバー（タブ ＆ フィルター） -->
     <div class="bg-slate-800/90 border border-slate-700/80 rounded-2xl p-3 sm:p-4 shadow-xl mb-5 backdrop-blur-md">
       
-      <!-- 第1行: [1軍 / 2軍] & [野手(打者) / 投手] 切り替え -->
+      <!-- 第1行: [1軍 / 2軍] & [野手 / 投手 / 📊 球団×ポジションWAR] 切り替え -->
       <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
         <!-- 1軍 / 2軍 切替 -->
         <div class="inline-flex p-1 bg-slate-900 rounded-xl border border-slate-700 text-xs sm:text-sm font-bold">
@@ -159,18 +189,21 @@
           </button>
         </div>
 
-        <!-- 打者 / 投手 切替 -->
+        <!-- 打者 / 投手 / 球団×ポジションWAR 切替 -->
         <div class="inline-flex p-1 bg-slate-900 rounded-xl border border-slate-700 text-xs sm:text-sm font-bold">
-          <button @click="category = 'hitters'" :class="category === 'hitters' ? 'bg-amber-500 text-slate-950 font-black shadow' : 'text-slate-400 hover:text-white'" class="px-4 py-1.5 rounded-lg transition-all flex items-center gap-1 font-pawapro">
+          <button @click="category = 'hitters'" :class="category === 'hitters' ? 'bg-amber-500 text-slate-950 font-black shadow' : 'text-slate-400 hover:text-white'" class="px-3.5 py-1.5 rounded-lg transition-all flex items-center gap-1 font-pawapro">
             <span class="material-symbols-outlined text-sm">sports_baseball</span> 野手（打者）
           </button>
-          <button @click="category = 'pitchers'" :class="category === 'pitchers' ? 'bg-cyan-500 text-slate-950 font-black shadow' : 'text-slate-400 hover:text-white'" class="px-4 py-1.5 rounded-lg transition-all flex items-center gap-1 font-pawapro">
+          <button @click="category = 'pitchers'" :class="category === 'pitchers' ? 'bg-cyan-500 text-slate-950 font-black shadow' : 'text-slate-400 hover:text-white'" class="px-3.5 py-1.5 rounded-lg transition-all flex items-center gap-1 font-pawapro">
             <span class="material-symbols-outlined text-sm">sports</span> 投手
+          </button>
+          <button @click="category = 'pos_war'" :class="category === 'pos_war' ? 'bg-emerald-500 text-slate-950 font-black shadow' : 'text-slate-400 hover:text-white'" class="px-3.5 py-1.5 rounded-lg transition-all flex items-center gap-1 font-pawapro">
+            <span class="material-symbols-outlined text-sm">grid_view</span> 📊 球団×ポジションWAR
           </button>
         </div>
 
-        <!-- 表示形式: カード / テーブル -->
-        <div class="inline-flex p-1 bg-slate-900 rounded-xl border border-slate-700 text-xs font-bold ml-auto">
+        <!-- 表示形式: カード / テーブル (打者/投手時のみ表示) -->
+        <div v-if="category !== 'pos_war'" class="inline-flex p-1 bg-slate-900 rounded-xl border border-slate-700 text-xs font-bold ml-auto">
           <button @click="viewMode = 'card'" :class="viewMode === 'card' ? 'bg-slate-700 text-white' : 'text-slate-400 hover:text-white'" class="px-2.5 py-1.5 rounded-lg transition-all flex items-center gap-1" title="パワプロ能力カード">
             <span class="material-symbols-outlined text-sm">view_module</span> カード
           </button>
@@ -178,10 +211,20 @@
             <span class="material-symbols-outlined text-sm">table_rows</span> テーブル
           </button>
         </div>
+
+        <!-- ポジションWAR時: 実数値 / リーグ平均差切替 -->
+        <div v-else class="inline-flex p-1 bg-slate-900 rounded-xl border border-slate-700 text-xs font-bold ml-auto">
+          <button @click="posWarDiffMode = false" :class="!posWarDiffMode ? 'bg-emerald-600 text-white shadow' : 'text-slate-400 hover:text-white'" class="px-3 py-1.5 rounded-lg transition-all">
+            WAR実数値
+          </button>
+          <button @click="posWarDiffMode = true" :class="posWarDiffMode ? 'bg-indigo-600 text-white shadow' : 'text-slate-400 hover:text-white'" class="px-3 py-1.5 rounded-lg transition-all">
+            リーグ平均差 (±)
+          </button>
+        </div>
       </div>
 
-      <!-- 第2行: 絞り込み条件（新人王のみ、球団選択、名前検索、規定打席など） -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2.5 text-xs">
+      <!-- 第2行 (野手/投手の場合): 絞り込み条件（新人王のみ、球団選択、名前検索、規定打席など） -->
+      <div v-if="category !== 'pos_war'" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2.5 text-xs">
         <!-- 新人王有資格者フィルター -->
         <div class="flex items-center gap-1.5 bg-slate-900/80 px-3 py-2 rounded-xl border border-slate-700">
           <span class="material-symbols-outlined text-rose-400 text-base">military_tech</span>
@@ -247,8 +290,61 @@
         </div>
       </div>
 
-      <!-- パワプロ能力基準凡例 -->
-      <div class="mt-3 pt-2.5 border-t border-slate-700/60 flex items-center justify-between flex-wrap gap-2 text-[11px] text-slate-400">
+      <!-- 第2行 (ポジションWARの場合): リーグフィルター & ソート設定 & 操作ヒント -->
+      <div v-else class="flex flex-wrap items-center justify-between gap-3 text-xs">
+        <div class="flex items-center gap-2 flex-wrap">
+          <!-- リーグ選択 -->
+          <div class="flex items-center gap-1.5 bg-slate-900/80 px-3 py-2 rounded-xl border border-slate-700">
+            <span class="material-symbols-outlined text-indigo-400 text-base">public</span>
+            <span class="text-slate-300 font-bold">リーグ:</span>
+            <select v-model="posWarLeagueFilter" class="bg-transparent text-slate-100 font-medium focus:outline-none cursor-pointer">
+              <template v-if="scope === 'top'">
+                <option value="all" class="bg-slate-800 text-white">全12球団</option>
+                <option value="セ" class="bg-slate-800 text-white">セ・リーグ (6球団)</option>
+                <option value="パ" class="bg-slate-800 text-white">パ・リーグ (6球団)</option>
+              </template>
+              <template v-else>
+                <option value="all" class="bg-slate-800 text-white">全14球団</option>
+                <option value="ウエスタン" class="bg-slate-800 text-white">ウエスタン (6球団)</option>
+                <option value="イースタン" class="bg-slate-800 text-white">イースタン (8球団)</option>
+              </template>
+            </select>
+          </div>
+
+          <!-- 並び替えポジション選択 -->
+          <div class="flex items-center gap-1.5 bg-slate-900/80 px-3 py-2 rounded-xl border border-slate-700">
+            <span class="material-symbols-outlined text-amber-400 text-base">sort</span>
+            <span class="text-slate-300 font-bold">並び替え基準:</span>
+            <select v-model="posWarSortCol" class="bg-transparent text-slate-100 font-medium focus:outline-none cursor-pointer">
+              <option value="total_war" class="bg-slate-800 text-white">総合WAR (野手+投手)</option>
+              <option value="bat_total" class="bg-slate-800 text-white">野手WAR合計</option>
+              <option value="pit" class="bg-slate-800 text-white">投手WAR合計</option>
+              <option value="sp" class="bg-slate-800 text-white">先発投手 (SP)</option>
+              <option value="rp" class="bg-slate-800 text-white">救援投手 (RP)</option>
+              <option value="C" class="bg-slate-800 text-white">捕手 (C)</option>
+              <option value="1B" class="bg-slate-800 text-white">一塁手 (1B)</option>
+              <option value="2B" class="bg-slate-800 text-white">二塁手 (2B)</option>
+              <option value="3B" class="bg-slate-800 text-white">三塁手 (3B)</option>
+              <option value="SS" class="bg-slate-800 text-white">遊撃手 (SS)</option>
+              <option value="LF" class="bg-slate-800 text-white">左翼手 (LF)</option>
+              <option value="CF" class="bg-slate-800 text-white">中堅手 (CF)</option>
+              <option value="RF" class="bg-slate-800 text-white">右翼手 (RF)</option>
+              <option value="DH" class="bg-slate-800 text-white">指名打者 (DH)</option>
+            </select>
+            <button @click="posWarSortAsc = !posWarSortAsc" class="text-slate-300 hover:text-white ml-1">
+              {{ posWarSortAsc ? '▲ 昇順' : '▼ 降順' }}
+            </button>
+          </div>
+        </div>
+
+        <div class="text-[11px] text-slate-400 flex items-center gap-1">
+          <span class="material-symbols-outlined text-emerald-400 text-sm">touch_app</span>
+          <span>セルをクリックで<strong>出場選手内訳</strong>、球団名クリックで<strong>戦力バランス分析</strong>を表示</span>
+        </div>
+      </div>
+
+      <!-- パワプロ能力基準凡例 (野手/投手時) -->
+      <div v-if="category !== 'pos_war'" class="mt-3 pt-2.5 border-t border-slate-700/60 flex items-center justify-between flex-wrap gap-2 text-[11px] text-slate-400">
         <div class="flex items-center gap-1.5 flex-wrap">
           <span class="font-bold text-slate-300">能力ランク基準:</span>
           <span class="rank-badge rank-S px-1.5 py-0.2 text-[10px]">S 90~100</span>
@@ -264,10 +360,226 @@
           ※主力母集団（打者100打席以上・投手30回以上）を基準とし、平均がD(50)となる自然なパーセンタイル査定です
         </div>
       </div>
+
+      <!-- ヒートマップカラー凡例 (ポジションWAR時) -->
+      <div v-else class="mt-3 pt-2.5 border-t border-slate-700/60 flex items-center justify-between flex-wrap gap-2 text-[11px] text-slate-400">
+        <div class="flex items-center gap-2 flex-wrap">
+          <span class="font-bold text-slate-300">WAR戦力ヒートマップ基準:</span>
+          <span class="heatmap-tier-5 px-2 py-0.5 rounded font-bold">+5.0以上 (圧倒的ストロングポイント)</span>
+          <span class="heatmap-tier-4 px-2 py-0.5 rounded font-bold">+3.0 ~ +4.9 (屈指の強み)</span>
+          <span class="heatmap-tier-3 px-2 py-0.5 rounded font-bold">+1.0 ~ +2.9 (平均以上)</span>
+          <span class="heatmap-tier-2 px-2 py-0.5 rounded font-bold">-0.9 ~ +0.9 (リーグ平均付近)</span>
+          <span class="heatmap-tier-1 px-2 py-0.5 rounded font-bold">-1.0 ~ -2.9 (やや弱み)</span>
+          <span class="heatmap-tier-0 px-2 py-0.5 rounded font-bold">-3.0以下 (深刻な補強ポイント)</span>
+        </div>
+        <div class="text-slate-400">
+          ※打者のWARは守備イニング比率で按分。各ポジションWARの合計は野手通算WARと完全一致します
+        </div>
+      </div>
     </div>
 
-    <!-- 該当件数表示 -->
-    <div class="mb-3 px-1 flex items-center justify-between text-xs text-slate-400">
+    <!-- ==================== 球団×ポジションWAR比較マトリクス ==================== -->
+    <div v-if="category === 'pos_war'" class="bg-slate-800/90 border border-slate-700/80 rounded-2xl p-3 sm:p-5 shadow-2xl backdrop-blur-md mb-6">
+      
+      <!-- マトリクスヘッダー・サマリー -->
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-4 pb-3 border-b border-slate-700/80">
+        <div>
+          <h2 class="text-lg sm:text-xl font-black text-white flex items-center gap-2 font-pawapro">
+            <span class="text-emerald-400">📊</span> {{ scope === 'top' ? '1軍トップ' : '2軍ファーム' }} 球団×ポジション別 WAR戦力比較マトリクス
+          </h2>
+          <p class="text-xs text-slate-400 mt-1">
+            打者のWARを守備イニング比率で按分配分し、各球団のポジション別の強み・補強ポイントを正確に可視化。
+          </p>
+        </div>
+        <div class="flex items-center gap-2 text-xs">
+          <span class="text-slate-400">表示モード:</span>
+          <span class="px-2.5 py-1 text-xs font-bold rounded-lg shadow-sm" :class="posWarDiffMode ? 'bg-indigo-600 text-white' : 'bg-emerald-600 text-white'">
+            {{ posWarDiffMode ? 'リーグ平均差 (±)' : 'WAR実数値' }}
+          </span>
+        </div>
+      </div>
+
+      <!-- テーブルラッパー（横スクロール可能、2列固定） -->
+      <div class="overflow-x-auto rounded-xl border border-slate-700/80 shadow-inner">
+        <table class="w-full text-xs text-left border-collapse min-w-[1020px]">
+          <thead class="bg-slate-900 text-slate-300 font-bold text-[11px] select-none border-b border-slate-700">
+            <tr>
+              <th class="p-2.5 text-center sticky-pos-rank w-12 bg-slate-900">順位</th>
+              <th class="p-2.5 sticky-pos-team w-32 bg-slate-900 cursor-pointer hover:text-white" @click="handlePosWarSort('team')">球団</th>
+              
+              <!-- 総合計・野手計 -->
+              <th class="p-2 text-right cursor-pointer hover:bg-slate-800 transition-colors bg-slate-900/95" @click="handlePosWarSort('total_war')">
+                <div class="flex items-center justify-end gap-1">
+                  <span>総合WAR</span>
+                  <span class="text-[10px] text-emerald-400" v-if="posWarSortCol === 'total_war'">{{ posWarSortAsc ? '▲' : '▼' }}</span>
+                </div>
+              </th>
+              <th class="p-2 text-right cursor-pointer hover:bg-slate-800 transition-colors bg-amber-950/20 text-amber-300 border-l border-slate-800" @click="handlePosWarSort('bat_total')">
+                <div class="flex items-center justify-end gap-1">
+                  <span>野手計</span>
+                  <span class="text-[10px] text-amber-400" v-if="posWarSortCol === 'bat_total'">{{ posWarSortAsc ? '▲' : '▼' }}</span>
+                </div>
+              </th>
+
+              <!-- 野手ポジション 9枠 (C ~ DH) -->
+              <th v-for="pos in ['C', '1B', '2B', '3B', 'SS', 'LF', 'CF', 'RF', 'DH']" :key="pos" 
+                  class="p-2 text-center cursor-pointer hover:bg-slate-800 transition-colors"
+                  :class="pos === 'C' ? 'border-l border-slate-800' : ''"
+                  @click="handlePosWarSort(pos)">
+                <div class="flex flex-col items-center">
+                  <span class="font-bold text-slate-200">{{ pos }}</span>
+                  <span class="text-[10px] text-slate-400 font-normal">{{ posNameMap(pos) }}</span>
+                  <span class="text-[9px] text-amber-400" v-if="posWarSortCol === pos">{{ posWarSortAsc ? '▲' : '▼' }}</span>
+                </div>
+              </th>
+
+              <!-- 投手枠 3列 (PIT, SP, RP) -->
+              <th class="p-2 text-right cursor-pointer hover:bg-slate-800 transition-colors bg-cyan-950/20 text-cyan-300 border-l border-slate-800" @click="handlePosWarSort('pit')">
+                <div class="flex items-center justify-end gap-1">
+                  <span>投手計</span>
+                  <span class="text-[10px] text-cyan-400" v-if="posWarSortCol === 'pit'">{{ posWarSortAsc ? '▲' : '▼' }}</span>
+                </div>
+              </th>
+              <th class="p-2 text-center cursor-pointer hover:bg-slate-800 transition-colors text-cyan-200" @click="handlePosWarSort('sp')">
+                <div class="flex flex-col items-center">
+                  <span>先発(SP)</span>
+                  <span class="text-[9px] text-cyan-400" v-if="posWarSortCol === 'sp'">{{ posWarSortAsc ? '▲' : '▼' }}</span>
+                </div>
+              </th>
+              <th class="p-2 text-center cursor-pointer hover:bg-slate-800 transition-colors text-cyan-200" @click="handlePosWarSort('rp')">
+                <div class="flex flex-col items-center">
+                  <span>救援(RP)</span>
+                  <span class="text-[9px] text-cyan-400" v-if="posWarSortCol === 'rp'">{{ posWarSortAsc ? '▲' : '▼' }}</span>
+                </div>
+              </th>
+
+              <th class="p-2 text-center w-16">分析</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800/80">
+            <tr v-for="(t, idx) in filteredPosWarTeams" :key="t.team" class="hover:bg-slate-700/40 transition-colors group">
+              <!-- 順位 -->
+              <td class="p-2 text-center sticky-pos-rank font-num font-bold text-slate-400">
+                <span class="w-6 h-6 rounded-full inline-flex items-center justify-center text-xs shadow-sm"
+                      :class="t.total_rank_all <= 3 ? 'bg-amber-400 text-slate-950 font-black' : 'bg-slate-800 text-slate-300'">
+                  {{ t.total_rank_all }}
+                </span>
+              </td>
+
+              <!-- 球団名 -->
+              <td class="p-2 sticky-pos-team cursor-pointer" @click="openTeamProfile(t)">
+                <div class="flex items-center gap-1.5">
+                  <span class="w-5 h-5 rounded-md inline-flex items-center justify-center text-[10px] font-black shrink-0 shadow"
+                        :style="{ backgroundColor: t.team_bg, color: t.team_color }">
+                    {{ t.team }}
+                  </span>
+                  <span class="font-bold text-white group-hover:text-amber-300 transition-colors">{{ t.team_short }}</span>
+                </div>
+              </td>
+
+              <!-- 総合WAR -->
+              <td class="p-2 text-right font-num font-bold border-r border-slate-800/60"
+                  :class="getPosWarCellClass(getPosWarVal(t, 'total_war'))">
+                <div class="text-sm font-black">{{ formatWarVal(getPosWarVal(t, 'total_war')) }}</div>
+                <div class="text-[10px] text-slate-400 font-normal" v-if="!posWarDiffMode">{{ t.total_rank_all }}位</div>
+              </td>
+
+              <!-- 野手WAR計 -->
+              <td class="p-2 text-right font-num font-bold border-r border-slate-800/60 bg-amber-950/10"
+                  :class="getPosWarCellClass(getPosWarVal(t, 'bat_total'))">
+                <div class="text-sm text-amber-200 font-black">{{ formatWarVal(getPosWarVal(t, 'bat_total')) }}</div>
+                <div class="text-[10px] text-slate-400 font-normal" v-if="!posWarDiffMode">{{ t.bat_rank_all }}位</div>
+              </td>
+
+              <!-- ポジション別 (C ~ DH) -->
+              <td v-for="pos in ['C', '1B', '2B', '3B', 'SS', 'LF', 'CF', 'RF', 'DH']" :key="pos"
+                  class="p-1.5 text-center cursor-pointer transition-all hover:scale-105 hover:z-20 relative border-r border-slate-800/40"
+                  :class="getPosWarCellClass(getPosWarVal(t, pos))"
+                  @click="openPosDetail(t, pos)"
+                  :title="t.team_name + ' ' + pos + ' の選手内訳を見る'">
+                <div class="font-num font-black text-xs">
+                  {{ formatWarVal(getPosWarVal(t, pos)) }}
+                </div>
+                <div class="text-[10px] text-slate-300 truncate max-w-[70px] mx-auto mt-0.5">
+                  {{ getTopPlayerName(t, pos) }}
+                </div>
+                <div class="text-[9px] text-slate-400 font-num" v-if="!posWarDiffMode">
+                  {{ t.positions[pos].rank_all }}位
+                </div>
+              </td>
+
+              <!-- 投手WAR計 -->
+              <td class="p-2 text-right font-num font-bold border-l border-slate-800/60 bg-cyan-950/10"
+                  :class="getPosWarCellClass(getPosWarVal(t, 'pit'))">
+                <div class="text-sm text-cyan-200 font-black">{{ formatWarVal(getPosWarVal(t, 'pit')) }}</div>
+                <div class="text-[10px] text-slate-400 font-normal" v-if="!posWarDiffMode">{{ t.pit.rank_all }}位</div>
+              </td>
+
+              <!-- 先発(SP) -->
+              <td class="p-1.5 text-center cursor-pointer transition-all hover:scale-105 border-r border-slate-800/40"
+                  :class="getPosWarCellClass(getPosWarVal(t, 'sp'))"
+                  @click="openPosDetail(t, 'sp')"
+                  :title="t.team_name + ' 先発投手の内訳を見る'">
+                <div class="font-num font-black text-xs text-cyan-200">
+                  {{ formatWarVal(getPosWarVal(t, 'sp')) }}
+                </div>
+                <div class="text-[10px] text-slate-300 truncate max-w-[70px] mx-auto mt-0.5">
+                  {{ getTopPlayerName(t, 'sp') }}
+                </div>
+                <div class="text-[9px] text-slate-400 font-num" v-if="!posWarDiffMode">
+                  {{ t.sp.rank_all }}位
+                </div>
+              </td>
+
+              <!-- 救援(RP) -->
+              <td class="p-1.5 text-center cursor-pointer transition-all hover:scale-105 border-r border-slate-800/40"
+                  :class="getPosWarCellClass(getPosWarVal(t, 'rp'))"
+                  @click="openPosDetail(t, 'rp')"
+                  :title="t.team_name + ' 救援投手の内訳を見る'">
+                <div class="font-num font-black text-xs text-cyan-200">
+                  {{ formatWarVal(getPosWarVal(t, 'rp')) }}
+                </div>
+                <div class="text-[10px] text-slate-300 truncate max-w-[70px] mx-auto mt-0.5">
+                  {{ getTopPlayerName(t, 'rp') }}
+                </div>
+                <div class="text-[9px] text-slate-400 font-num" v-if="!posWarDiffMode">
+                  {{ t.rp.rank_all }}位
+                </div>
+              </td>
+
+              <!-- 分析ボタン -->
+              <td class="p-2 text-center">
+                <button @click="openTeamProfile(t)" class="bg-indigo-600/80 hover:bg-indigo-500 text-white text-[11px] px-2 py-1 rounded font-bold transition-colors shadow">
+                  分析
+                </button>
+              </td>
+            </tr>
+          </tbody>
+
+          <!-- フッター: リーグ平均行 -->
+          <tfoot class="bg-slate-950 font-bold text-[11px] border-t-2 border-slate-600 text-slate-300">
+            <template v-for="(avgKey, avgLabel) in { 'セ': 'セ・リーグ平均', 'パ': 'パ・リーグ平均', 'all': '全12球団平均' }" :key="avgKey">
+              <tr v-if="posWarData.league_avgs && posWarData.league_avgs[avgKey]" class="border-b border-slate-800/80">
+                <td class="p-2 text-center sticky-pos-rank bg-slate-950 text-slate-400">-</td>
+                <td class="p-2 sticky-pos-team bg-slate-950 text-indigo-300">{{ avgLabel }}</td>
+                <td class="p-2 text-right font-num text-white">{{ formatWarVal(posWarData.league_avgs[avgKey].total_war) }}</td>
+                <td class="p-2 text-right font-num text-amber-300">{{ formatWarVal(posWarData.league_avgs[avgKey].bat_total) }}</td>
+                <td v-for="pos in ['C', '1B', '2B', '3B', 'SS', 'LF', 'CF', 'RF', 'DH']" :key="pos" class="p-2 text-center font-num text-slate-300">
+                  {{ formatWarVal(posWarData.league_avgs[avgKey][pos]) }}
+                </td>
+                <td class="p-2 text-right font-num text-cyan-300">{{ formatWarVal(posWarData.league_avgs[avgKey].pit) }}</td>
+                <td class="p-2 text-center font-num text-cyan-300">{{ formatWarVal(posWarData.league_avgs[avgKey].sp) }}</td>
+                <td class="p-2 text-center font-num text-cyan-300">{{ formatWarVal(posWarData.league_avgs[avgKey].rp) }}</td>
+                <td class="p-2 text-center text-slate-500">-</td>
+              </tr>
+            </template>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+
+    <!-- 該当件数表示 (野手/投手時) -->
+    <div v-if="category !== 'pos_war'" class="mb-3 px-1 flex items-center justify-between text-xs text-slate-400">
       <div>
         表示中: <strong class="text-white font-num text-sm">{{ filteredList.length }}</strong> 名
         <span v-if="teamFilter !== 'all'"> ({{ getTeamName(teamFilter) }})</span>
@@ -302,7 +614,7 @@
     </div>
 
     <!-- ==================== パワプロ選手名鑑カード表示 ==================== -->
-    <div v-if="viewMode === 'card'" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
+    <div v-if="category !== 'pos_war' && viewMode === 'card'" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
       <div v-for="(p, idx) in paginatedList" :key="p.name + p.team" 
            @click="openPlayerDetail(p)"
            class="bg-gradient-to-b from-slate-800 to-slate-900 border border-slate-700/80 hover:border-amber-400/80 rounded-2xl p-4 shadow-lg hover:shadow-2xl transition-all cursor-pointer transform hover:-translate-y-0.5 relative group">
@@ -518,7 +830,7 @@
     </div>
 
     <!-- ==================== 詳細テーブル表示 ==================== -->
-    <div v-else class="bg-slate-800/90 border border-slate-700 rounded-2xl shadow-xl overflow-hidden backdrop-blur-md">
+    <div v-else-if="category !== 'pos_war' && viewMode === 'table'" class="bg-slate-800/90 border border-slate-700 rounded-2xl shadow-xl overflow-hidden backdrop-blur-md">
       <div class="overflow-x-auto">
         <table class="w-full text-left border-collapse text-xs whitespace-nowrap">
           <thead class="bg-slate-900/90 text-slate-300 text-[11px] font-bold border-b border-slate-700">
@@ -650,7 +962,7 @@
     </div>
 
     <!-- ページネーション -->
-    <div class="mt-4 flex items-center justify-between text-xs text-slate-400">
+    <div v-if="category !== 'pos_war'" class="mt-4 flex items-center justify-between text-xs text-slate-400">
       <div>
         {{ (currentPage - 1) * pageSize + 1 }} - {{ Math.min(currentPage * pageSize, filteredList.length) }} 件 / 全 {{ filteredList.length }} 件
       </div>
@@ -958,6 +1270,211 @@
       </div>
     </div>
 
+    <!-- ==================== ポジション戦力内訳モーダル ==================== -->
+    <div v-if="selectedPosDetail" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-5" @click.self="selectedPosDetail = null">
+      <div class="bg-slate-900 border border-slate-700 rounded-3xl max-w-3xl w-full max-h-[92vh] overflow-y-auto p-5 sm:p-6 shadow-2xl relative">
+        <button @click="selectedPosDetail = null" class="absolute top-4 right-4 text-slate-400 hover:text-white bg-slate-800 w-8 h-8 rounded-full flex items-center justify-center font-bold">
+          ✕
+        </button>
+
+        <div class="flex items-center gap-3.5 mb-4 pb-3 border-b border-slate-800">
+          <div class="w-12 h-12 rounded-2xl flex items-center justify-center font-black text-lg shadow-md shrink-0"
+               :style="{ backgroundColor: selectedPosDetail.team.team_bg, color: selectedPosDetail.team.team_color }">
+            {{ selectedPosDetail.team.team }}
+          </div>
+          <div>
+            <div class="flex items-center gap-2 mb-0.5">
+              <span class="text-xs bg-slate-800 text-slate-300 px-2 py-0.5 rounded font-bold">{{ selectedPosDetail.team.league }}</span>
+              <span class="text-xs text-amber-400 font-bold">
+                全体順位 {{ selectedPosDetail.rankAll }}位 / リーグ順位 {{ selectedPosDetail.rankLeague }}位
+              </span>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-black text-white font-pawapro">
+              {{ selectedPosDetail.team.team_name }} 【{{ posNameMap(selectedPosDetail.posKey) }} ({{ selectedPosDetail.posKey }})】
+            </h2>
+          </div>
+          <div class="ml-auto text-right bg-slate-800/80 px-4 py-2 rounded-2xl border border-slate-700/60 hidden sm:block">
+            <span class="text-[10px] text-slate-400 block">枠合計WAR</span>
+            <span class="text-xl font-black font-num" :class="selectedPosDetail.totalWar >= 0 ? 'text-emerald-400' : 'text-rose-400'">
+              {{ selectedPosDetail.totalWar > 0 ? '+' : '' }}{{ selectedPosDetail.totalWar }}
+            </span>
+          </div>
+        </div>
+
+        <!-- 選手一覧テーブル -->
+        <div class="overflow-x-auto rounded-xl border border-slate-800 mb-4 bg-slate-950/60">
+          <table class="w-full text-xs text-left">
+            <thead class="bg-slate-950 text-slate-400 text-[11px] border-b border-slate-800">
+              <tr>
+                <th class="p-2.5">選手名</th>
+                <th class="p-2.5 text-right" v-if="isHitterPos(selectedPosDetail.posKey)">守備イニング</th>
+                <th class="p-2.5 text-right" v-if="isHitterPos(selectedPosDetail.posKey)">守備シェア</th>
+                <th class="p-2.5 text-right" v-else>投球回(IP)</th>
+                <th class="p-2.5 text-right text-amber-400 font-bold">配分WAR</th>
+                <th class="p-2.5 text-right text-slate-400">通算WAR</th>
+                <template v-if="isHitterPos(selectedPosDetail.posKey)">
+                  <th class="p-2.5 text-right">打席数</th>
+                  <th class="p-2.5 text-right">wRC+</th>
+                  <th class="p-2.5 text-right">OPS</th>
+                  <th class="p-2.5 text-center">守備評価</th>
+                </template>
+                <template v-else>
+                  <th class="p-2.5 text-center">適性</th>
+                  <th class="p-2.5 text-right">FIP</th>
+                  <th class="p-2.5 text-right">K%</th>
+                  <th class="p-2.5 text-right">BB%</th>
+                  <th class="p-2.5 text-center">★評価</th>
+                </template>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800/80 text-slate-200">
+              <tr v-for="pl in selectedPosDetail.players" :key="pl.name" class="hover:bg-slate-800/50">
+                <td class="p-2.5 font-bold text-white flex items-center gap-1.5">
+                  <span>{{ pl.name }}</span>
+                </td>
+                <template v-if="isHitterPos(selectedPosDetail.posKey)">
+                  <td class="p-2.5 text-right font-num text-slate-300">{{ pl.inn > 0 ? pl.inn + '回' : '-' }}</td>
+                  <td class="p-2.5 text-right font-num text-slate-300">{{ pl.share_pct }}%</td>
+                  <td class="p-2.5 text-right font-num font-black text-amber-300 text-sm">
+                    {{ pl.alloc_war > 0 ? '+' : '' }}{{ pl.alloc_war }}
+                  </td>
+                  <td class="p-2.5 text-right font-num text-slate-400">{{ pl.total_war }}</td>
+                  <td class="p-2.5 text-right font-num text-slate-300">{{ pl.pa }}</td>
+                  <td class="p-2.5 text-right font-num text-cyan-400 font-bold">{{ pl.wrc_plus }}</td>
+                  <td class="p-2.5 text-right font-num text-emerald-400">{{ pl.ops }}</td>
+                  <td class="p-2.5 text-center">
+                    <span v-if="pl.defense_grade && pl.defense_grade !== '-'" :class="'rank-badge rank-' + pl.defense_grade" class="px-2 py-0.5 text-xs font-pawapro shadow-sm">
+                      {{ pl.defense_grade }} <span class="font-num text-[10px] ml-0.5">{{ pl.defense_val }}</span>
+                    </span>
+                    <span v-else class="text-slate-500 font-num">-</span>
+                  </td>
+                </template>
+                <template v-else>
+                  <td class="p-2.5 text-right font-num text-slate-300">{{ pl.ip }}回</td>
+                  <td class="p-2.5 text-right font-num font-black text-cyan-300 text-sm">
+                    {{ pl.war > 0 ? '+' : '' }}{{ pl.war }}
+                  </td>
+                  <td class="p-2.5 text-right font-num text-slate-400">{{ pl.war }}</td>
+                  <td class="p-2.5 text-center">
+                    <span class="text-xs px-2 py-0.5 rounded bg-slate-800 text-slate-300">{{ pl.role }}</span>
+                  </td>
+                  <td class="p-2.5 text-right font-num text-amber-300">{{ pl.fip || '-' }}</td>
+                  <td class="p-2.5 text-right font-num text-cyan-400">{{ pl.k_pct }}%</td>
+                  <td class="p-2.5 text-right font-num text-slate-300">{{ pl.bb_pct }}%</td>
+                  <td class="p-2.5 text-center font-num text-amber-400 font-bold">★{{ pl.star_rating }}</td>
+                </template>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="text-[11px] text-slate-400 leading-relaxed mb-4">
+          ※ 複数ポジションを守った野手は、当該ポジションの守備イニング比率に応じてWARを按分配分しています。守備イニング10回未満の選手はDH枠に集約しています。
+        </p>
+
+        <div class="text-center">
+          <button @click="selectedPosDetail = null" class="bg-slate-800 hover:bg-slate-700 text-white font-bold px-6 py-2 rounded-xl text-xs transition-colors">
+            閉じる
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== 球団別戦力プロファイルモーダル ==================== -->
+    <div v-if="selectedTeamProfile" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-5" @click.self="selectedTeamProfile = null">
+      <div class="bg-slate-900 border border-slate-700 rounded-3xl max-w-2xl w-full max-h-[92vh] overflow-y-auto p-5 sm:p-6 shadow-2xl relative">
+        <button @click="selectedTeamProfile = null" class="absolute top-4 right-4 text-slate-400 hover:text-white bg-slate-800 w-8 h-8 rounded-full flex items-center justify-center font-bold">
+          ✕
+        </button>
+
+        <div class="flex items-center gap-3.5 mb-5 pb-4 border-b border-slate-800">
+          <div class="w-12 h-12 rounded-2xl flex items-center justify-center font-black text-lg shadow-lg shrink-0"
+               :style="{ backgroundColor: selectedTeamProfile.team_bg, color: selectedTeamProfile.team_color }">
+            {{ selectedTeamProfile.team }}
+          </div>
+          <div>
+            <div class="flex items-center gap-2 mb-0.5">
+              <span class="text-xs bg-slate-800 text-slate-300 px-2 py-0.5 rounded font-bold">{{ selectedTeamProfile.league }}</span>
+              <span class="text-xs text-amber-400 font-bold">総合順位 {{ selectedTeamProfile.total_rank_all }}位 (リーグ {{ selectedTeamProfile.total_rank_league }}位)</span>
+            </div>
+            <h2 class="text-2xl font-black text-white font-pawapro">
+              {{ selectedTeamProfile.team_name }} 戦力バランス
+            </h2>
+          </div>
+        </div>
+
+        <!-- サマリーカード -->
+        <div class="grid grid-cols-3 gap-2.5 mb-5 text-center">
+          <div class="bg-slate-800/80 p-3 rounded-2xl border border-slate-700/60">
+            <span class="text-[11px] text-slate-400 block mb-1">総合WAR</span>
+            <span class="text-xl font-black font-num text-white">{{ selectedTeamProfile.total_war }}</span>
+          </div>
+          <div class="bg-amber-950/20 p-3 rounded-2xl border border-amber-500/30">
+            <span class="text-[11px] text-amber-400 block mb-1">野手WAR計</span>
+            <span class="text-xl font-black font-num text-amber-300">{{ selectedTeamProfile.bat_total }}</span>
+            <span class="text-[10px] text-slate-400 block mt-0.5">全体 {{ selectedTeamProfile.bat_rank_all }}位</span>
+          </div>
+          <div class="bg-cyan-950/20 p-3 rounded-2xl border border-cyan-500/30">
+            <span class="text-[11px] text-cyan-400 block mb-1">投手WAR計</span>
+            <span class="text-xl font-black font-num text-cyan-300">{{ selectedTeamProfile.pit.war }}</span>
+            <span class="text-[10px] text-slate-400 block mt-0.5">全体 {{ selectedTeamProfile.pit.rank_all }}位</span>
+          </div>
+        </div>
+
+        <!-- ポジション別 バーチャート・強み弱み分析 -->
+        <div class="space-y-2 mb-6">
+          <h3 class="text-xs font-bold text-slate-300 uppercase tracking-wider mb-2 flex items-center justify-between">
+            <span class="flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-sm text-emerald-400">stacked_bar_chart</span> 各ポジションWAR貢献度 & リーグ平均差
+            </span>
+            <span class="text-[10px] text-slate-400">バー: リーグ平均比 (緑=強み, 赤=弱点)</span>
+          </h3>
+
+          <div v-for="item in getTeamProfilePositionItems(selectedTeamProfile)" :key="item.key"
+               class="flex items-center justify-between p-2 rounded-xl bg-slate-950/60 border border-slate-800/80 text-xs gap-2">
+            <div class="w-20 font-bold flex items-center gap-1">
+              <span class="text-slate-200">{{ item.name }}</span>
+            </div>
+            
+            <div class="w-16 text-center">
+              <span class="font-num font-black text-sm" :class="item.war >= 0 ? 'text-emerald-300' : 'text-rose-400'">
+                {{ item.war > 0 ? '+' : '' }}{{ item.war }}
+              </span>
+              <span class="text-[9px] text-slate-400 block font-num">{{ item.rank_all }}位</span>
+            </div>
+
+            <!-- 主力選手 -->
+            <div class="w-24 text-slate-300 text-[11px] truncate text-center">
+              {{ item.top_player || '-' }}
+            </div>
+
+            <!-- リーグ平均差バー -->
+            <div class="flex-1 flex items-center gap-1.5">
+              <span class="text-[10px] font-num w-10 text-right" :class="item.diff >= 0 ? 'text-emerald-400' : 'text-rose-400'">
+                {{ item.diff > 0 ? '+' : '' }}{{ item.diff }}
+              </span>
+              <div class="flex-1 bg-slate-800 h-2 rounded-full overflow-hidden relative">
+                <div class="h-full rounded-full transition-all duration-500"
+                     :class="item.diff >= 0 ? 'bg-emerald-500' : 'bg-rose-500'"
+                     :style="{ width: Math.min(100, Math.abs(item.diff) * 20) + '%' }"></div>
+              </div>
+            </div>
+
+            <!-- 内訳ボタン -->
+            <button @click="openPosDetail(selectedTeamProfile, item.key)" class="text-xs text-indigo-400 hover:text-white px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 transition-colors">
+              内訳
+            </button>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <button @click="selectedTeamProfile = null" class="bg-slate-800 hover:bg-slate-700 text-white font-bold px-6 py-2 rounded-xl text-xs transition-colors">
+            閉じる
+          </button>
+        </div>
+      </div>
+    </div>
+
     <!-- ==================== スマホ共有モーダル (QRコード) ==================== -->
     <div v-if="showShareModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4" @click.self="showShareModal = false">
       <div class="bg-slate-900 border border-slate-700 rounded-3xl max-w-sm w-full p-6 shadow-2xl text-center relative">
@@ -1014,6 +1531,14 @@
         const selectedPlayer = ref(null);
         const showShareModal = ref(false);
         const shareUrl = ref(window.location.href.split('?')[0]);
+
+        // ポジションWAR用状態
+        const posWarDiffMode = ref(false); // false: 実数値, true: リーグ平均差(±)
+        const posWarLeagueFilter = ref('all');
+        const posWarSortCol = ref('total_war');
+        const posWarSortAsc = ref(false);
+        const selectedPosDetail = ref(null);
+        const selectedTeamProfile = ref(null);
 
         // データ件数
         const hittersCount = computed(() => {
@@ -1148,8 +1673,196 @@
           });
         }
 
+        // ==================== ポジションWAR用 ロジック ====================
+        const posWarData = computed(() => {
+          if (!data.value || !data.value.pos_war || !data.value.pos_war[scope.value]) {
+            return { positions: ['C','1B','2B','3B','SS','LF','CF','RF','DH'], teams: [], league_avgs: {} };
+          }
+          return data.value.pos_war[scope.value];
+        });
+
+        const filteredPosWarTeams = computed(() => {
+          const pdata = posWarData.value;
+          if (!pdata || !pdata.teams) return [];
+          let list = [...pdata.teams];
+          if (posWarLeagueFilter.value !== 'all') {
+            list = list.filter(t => t.league === posWarLeagueFilter.value);
+          }
+          const col = posWarSortCol.value;
+          list.sort((a, b) => {
+            let va, vb;
+            if (col === 'team') {
+              va = a.team_name;
+              vb = b.team_name;
+              return posWarSortAsc.value ? va.localeCompare(vb) : vb.localeCompare(va);
+            }
+            if (col in a.positions) {
+              va = a.positions[col].war;
+              vb = b.positions[col].war;
+            } else if (col in ['sp', 'rp', 'pit']) {
+              va = a[col].war;
+              vb = b[col].war;
+            } else {
+              va = a[col];
+              vb = b[col];
+            }
+            if (va === undefined || va === null) va = -9999;
+            if (vb === undefined || vb === null) vb = -9999;
+            return posWarSortAsc.value ? (va - vb) : (vb - va);
+          });
+          return list;
+        });
+
+        function handlePosWarSort(col) {
+          if (posWarSortCol.value === col) {
+            posWarSortAsc.value = !posWarSortAsc.value;
+          } else {
+            posWarSortCol.value = col;
+            posWarSortAsc.value = false;
+          }
+        }
+
+        function posNameMap(posKey) {
+          const m = {
+            'C': '捕手', '1B': '一塁手', '2B': '二塁手', '3B': '三塁手', 'SS': '遊撃手',
+            'LF': '左翼手', 'CF': '中堅手', 'RF': '右翼手', 'DH': '指名打者',
+            'sp': '先発投手', 'rp': '救援投手', 'pit': '投手計', 'bat_total': '野手計', 'total_war': '総合WAR'
+          };
+          return m[posKey] || posKey;
+        }
+
+        function isHitterPos(posKey) {
+          return ['C', '1B', '2B', '3B', 'SS', 'LF', 'CF', 'RF', 'DH'].includes(posKey);
+        }
+
+        function getPosWarVal(team, colKey) {
+          if (!team) return 0;
+          let val = 0;
+          if (team.positions && team.positions[colKey]) {
+            val = team.positions[colKey].war;
+          } else if (team[colKey] && typeof team[colKey].war === 'number') {
+            val = team[colKey].war;
+          } else if (typeof team[colKey] === 'number') {
+            val = team[colKey];
+          }
+
+          if (posWarDiffMode.value) {
+            const avgs = posWarData.value.league_avgs;
+            const lgKey = team.league;
+            let avgVal = 0;
+            if (avgs && avgs[lgKey]) {
+              avgVal = avgs[lgKey][colKey] || 0;
+            } else if (avgs && avgs['all']) {
+              avgVal = avgs['all'][colKey] || 0;
+            }
+            return Math.round((val - avgVal) * 10) / 10;
+          }
+          return Math.round(val * 10) / 10;
+        }
+
+        function formatWarVal(val) {
+          if (val === undefined || val === null || isNaN(val)) return '0.0';
+          const n = Number(val);
+          return (n > 0 ? '+' : '') + n.toFixed(1);
+        }
+
+        function getTopPlayerName(team, colKey) {
+          if (!team) return '-';
+          let players = [];
+          if (team.positions && team.positions[colKey]) {
+            players = team.positions[colKey].players;
+          } else if (team[colKey] && team[colKey].players) {
+            players = team[colKey].players;
+          }
+          if (players && players.length > 0) {
+            return players[0].name;
+          }
+          return '-';
+        }
+
+        function getPosWarCellClass(val) {
+          const v = Number(val) || 0;
+          if (v >= 5.0) return 'heatmap-tier-5';
+          if (v >= 3.0) return 'heatmap-tier-4';
+          if (v >= 1.0) return 'heatmap-tier-3';
+          if (v >= -0.9) return 'heatmap-tier-2';
+          if (v >= -2.9) return 'heatmap-tier-1';
+          return 'heatmap-tier-0';
+        }
+
+        function openPosDetail(team, posKey) {
+          let players = [];
+          let totalWar = 0;
+          let rankAll = 0;
+          let rankLeague = 0;
+          if (team.positions && team.positions[posKey]) {
+            const pObj = team.positions[posKey];
+            players = pObj.players || [];
+            totalWar = pObj.war;
+            rankAll = pObj.rank_all;
+            rankLeague = pObj.rank_league;
+          } else if (team[posKey]) {
+            const pObj = team[posKey];
+            players = pObj.players || [];
+            totalWar = pObj.war;
+            rankAll = pObj.rank_all;
+            rankLeague = pObj.rank_league;
+          }
+          selectedPosDetail.value = {
+            team: team,
+            posKey: posKey,
+            totalWar: totalWar,
+            rankAll: rankAll,
+            rankLeague: rankLeague,
+            players: players
+          };
+        }
+
+        function openTeamProfile(team) {
+          selectedTeamProfile.value = team;
+        }
+
+        function getTeamProfilePositionItems(team) {
+          if (!team) return [];
+          const posList = ['C', '1B', '2B', '3B', 'SS', 'LF', 'CF', 'RF', 'DH', 'sp', 'rp'];
+          const avgs = posWarData.value.league_avgs;
+          const lgAvg = (avgs && (avgs[team.league] || avgs['all'])) || {};
+
+          return posList.map(pos => {
+            let war = 0;
+            let rankAll = 0;
+            let topPlayer = '-';
+            if (team.positions && team.positions[pos]) {
+              const pObj = team.positions[pos];
+              war = pObj.war;
+              rankAll = pObj.rank_all;
+              topPlayer = (pObj.players && pObj.players[0]) ? pObj.players[0].name : '-';
+            } else if (team[pos]) {
+              const pObj = team[pos];
+              war = pObj.war;
+              rankAll = pObj.rank_all;
+              topPlayer = (pObj.players && pObj.players[0]) ? pObj.players[0].name : '-';
+            }
+            const avgVal = lgAvg[pos] || 0;
+            const diff = Math.round((war - avgVal) * 10) / 10;
+            return {
+              key: pos,
+              name: posNameMap(pos),
+              war: war,
+              rank_all: rankAll,
+              top_player: topPlayer,
+              diff: diff
+            };
+          });
+        }
+
         function exportCurrentCsv() {
-          const filename = `${category.value}_${scope.value}_2026_pawapro.csv`;
+          let filename = '';
+          if (category.value === 'pos_war') {
+            filename = `team_position_war_${scope.value}_2026.csv`;
+          } else {
+            filename = `${category.value}_${scope.value}_2026_pawapro.csv`;
+          }
           const link = document.createElement('a');
           link.href = filename;
           link.download = filename;
@@ -1196,7 +1909,27 @@
           openPlayerDetail,
           openShareModal,
           copyShareUrl,
-          exportCurrentCsv
+          exportCurrentCsv,
+
+          // ポジションWAR
+          posWarDiffMode,
+          posWarLeagueFilter,
+          posWarSortCol,
+          posWarSortAsc,
+          posWarData,
+          filteredPosWarTeams,
+          handlePosWarSort,
+          posNameMap,
+          isHitterPos,
+          getPosWarVal,
+          formatWarVal,
+          getTopPlayerName,
+          getPosWarCellClass,
+          selectedPosDetail,
+          openPosDetail,
+          selectedTeamProfile,
+          openTeamProfile,
+          getTeamProfilePositionItems
         };
       }
     }).mount('#app');
