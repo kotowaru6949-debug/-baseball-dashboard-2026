@@ -17,7 +17,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   
   <!-- データスクリプト読み込み -->
-  <script src="baseball_data_2026.js?v=20261015_2"></script>
+  <script src="baseball_data_2026.js?v=20261017_sp_rp"></script>
   
   <script>
     tailwind.config = {
@@ -704,18 +704,20 @@
                 <thead class="bg-slate-950 text-slate-400 text-[11px] border-b border-slate-800">
                   <tr>
                     <th class="px-2.5 py-2">選手名</th>
-                    <th class="px-2 py-2 text-right" v-if="isHitterPos(blk.posKey)">守備回</th>
-                    <th class="px-2 py-2 text-right" v-if="isHitterPos(blk.posKey)">シェア</th>
-                    <th class="px-2 py-2 text-right" v-else>投球回(IP)</th>
-                    <th class="px-2 py-2 text-right text-amber-400 font-bold">配分WAR</th>
-                    <th class="px-2 py-2 text-right text-slate-400">通算WAR</th>
                     <template v-if="isHitterPos(blk.posKey)">
+                      <th class="px-2 py-2 text-right">守備回</th>
+                      <th class="px-2 py-2 text-right">シェア</th>
+                      <th class="px-2 py-2 text-right text-amber-400 font-bold">配分WAR</th>
+                      <th class="px-2 py-2 text-right text-slate-400">通算WAR</th>
                       <th class="px-2 py-2 text-right">打席</th>
                       <th class="px-2 py-2 text-right">wRC+</th>
                       <th class="px-2 py-2 text-right">OPS</th>
                       <th class="px-2.5 py-2 text-center">守備評価</th>
                     </template>
                     <template v-else>
+                      <th class="px-2 py-2 text-right">登板</th>
+                      <th class="px-2 py-2 text-right">投球回</th>
+                      <th class="px-2 py-2 text-right text-cyan-400 font-bold">WAR</th>
                       <th class="px-2 py-2 text-center">適性</th>
                       <th class="px-2 py-2 text-right">FIP</th>
                       <th class="px-2 py-2 text-right">K%</th>
@@ -753,13 +755,14 @@
                       </td>
                     </template>
                     <template v-else>
+                      <td class="px-2 py-2 text-right font-num text-slate-400">{{ pl.g ? pl.g + '登' : '-' }}</td>
                       <td class="px-2 py-2 text-right font-num text-slate-300">{{ pl.ip }}回</td>
                       <td class="px-2 py-2 text-right font-num font-black text-cyan-300 text-sm">
                         {{ pl.war > 0 ? '+' : '' }}{{ pl.war }}
                       </td>
-                      <td class="px-2 py-2 text-right font-num text-slate-400">{{ pl.war }}</td>
                       <td class="px-2 py-2 text-center">
-                        <span class="text-xs px-2 py-0.5 rounded bg-slate-800 text-slate-300">{{ pl.role }}</span>
+                        <span class="text-xs px-2 py-0.5 rounded font-bold"
+                              :class="pl.role === '先' ? 'bg-rose-500/20 text-rose-300 border border-rose-500/40' : (pl.role === '抑' ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40' : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40')">{{ pl.role }}</span>
                       </td>
                       <td class="px-2 py-2 text-right font-num text-amber-300">{{ pl.fip || '-' }}</td>
                       <td class="px-2 py-2 text-right font-num text-cyan-400">{{ pl.k_pct }}%</td>
@@ -1579,18 +1582,20 @@
             <thead class="bg-slate-950 text-slate-400 text-[11px] border-b border-slate-800">
               <tr>
                 <th class="p-2.5">選手名 (クリックで能力詳細)</th>
-                <th class="p-2.5 text-right" v-if="isHitterPos(selectedPosDetail.posKey)">守備イニング</th>
-                <th class="p-2.5 text-right" v-if="isHitterPos(selectedPosDetail.posKey)">守備シェア</th>
-                <th class="p-2.5 text-right" v-else>投球回(IP)</th>
-                <th class="p-2.5 text-right text-amber-400 font-bold">配分WAR</th>
-                <th class="p-2.5 text-right text-slate-400">通算WAR</th>
                 <template v-if="isHitterPos(selectedPosDetail.posKey)">
+                  <th class="p-2.5 text-right">守備イニング</th>
+                  <th class="p-2.5 text-right">守備シェア</th>
+                  <th class="p-2.5 text-right text-amber-400 font-bold">配分WAR</th>
+                  <th class="p-2.5 text-right text-slate-400">通算WAR</th>
                   <th class="p-2.5 text-right">打席数</th>
                   <th class="p-2.5 text-right">wRC+</th>
                   <th class="p-2.5 text-right">OPS</th>
                   <th class="p-2.5 text-center">守備評価</th>
                 </template>
                 <template v-else>
+                  <th class="p-2.5 text-right">登板</th>
+                  <th class="p-2.5 text-right">投球回(IP)</th>
+                  <th class="p-2.5 text-right text-cyan-400 font-bold">WAR</th>
                   <th class="p-2.5 text-center">適性</th>
                   <th class="p-2.5 text-right">FIP</th>
                   <th class="p-2.5 text-right">K%</th>
@@ -1625,13 +1630,14 @@
                   </td>
                 </template>
                 <template v-else>
+                  <td class="p-2.5 text-right font-num text-slate-400">{{ pl.g ? pl.g + '登' : '-' }}</td>
                   <td class="p-2.5 text-right font-num text-slate-300">{{ pl.ip }}回</td>
                   <td class="p-2.5 text-right font-num font-black text-cyan-300 text-sm">
                     {{ pl.war > 0 ? '+' : '' }}{{ pl.war }}
                   </td>
-                  <td class="p-2.5 text-right font-num text-slate-400">{{ pl.war }}</td>
                   <td class="p-2.5 text-center">
-                    <span class="text-xs px-2 py-0.5 rounded bg-slate-800 text-slate-300">{{ pl.role }}</span>
+                    <span class="text-xs px-2 py-0.5 rounded font-bold"
+                          :class="pl.role === '先' ? 'bg-rose-500/20 text-rose-300 border border-rose-500/40' : (pl.role === '抑' ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40' : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40')">{{ pl.role }}</span>
                   </td>
                   <td class="p-2.5 text-right font-num text-amber-300">{{ pl.fip || '-' }}</td>
                   <td class="p-2.5 text-right font-num text-cyan-400">{{ pl.k_pct }}%</td>
