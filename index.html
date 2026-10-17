@@ -17,7 +17,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   
   <!-- データスクリプト読み込み -->
-  <script src="baseball_data_2026.js?v=20261017_stamina"></script>
+  <script src="baseball_data_2026.js?v=20261017_ovr"></script>
   
   <script>
     tailwind.config = {
@@ -416,7 +416,7 @@
           <span class="rank-badge rank-G px-1.5 py-0.2 text-[10px]">G 1~19</span>
         </div>
         <div class="text-slate-400">
-          ※主力母集団（打者100打席以上・投手30回以上）を基準とし、平均がD(50)となる自然なパーセンタイル査定です
+          ※総合力はWAR絶対基準（WAR0.0以下＝G、控えプラス圏＝F〜E、1軍平均レギュラー＝D〜C）。個別能力は出場機会に応じたサンプル回帰補正付き査定です
         </div>
       </div>
 
@@ -709,15 +709,17 @@
                       <th class="px-2 py-2 text-right">シェア</th>
                       <th class="px-2 py-2 text-right text-amber-400 font-bold">配分WAR</th>
                       <th class="px-2 py-2 text-right text-slate-400">通算WAR</th>
+                      <th class="px-2 py-2 text-center">総合力</th>
                       <th class="px-2 py-2 text-right">打席</th>
                       <th class="px-2 py-2 text-right">wRC+</th>
                       <th class="px-2 py-2 text-right">OPS</th>
-                      <th class="px-2.5 py-2 text-center">守備評価</th>
+                      <th class="px-2.5 py-2 text-center">守備力</th>
                     </template>
                     <template v-else>
                       <th class="px-2 py-2 text-right">登板</th>
                       <th class="px-2 py-2 text-right">投球回</th>
                       <th class="px-2 py-2 text-right text-cyan-400 font-bold">WAR</th>
+                      <th class="px-2 py-2 text-center">総合力</th>
                       <th class="px-2 py-2 text-center">適性</th>
                       <th class="px-2 py-2 text-right">FIP</th>
                       <th class="px-2 py-2 text-right">K%</th>
@@ -728,7 +730,7 @@
                 </thead>
                 <tbody class="divide-y divide-slate-800/80 text-slate-200">
                   <tr v-if="!blk.players || blk.players.length === 0">
-                    <td colspan="9" class="p-4 text-center text-slate-500">該当する出場選手がいません</td>
+                    <td colspan="10" class="p-4 text-center text-slate-500">該当する出場選手がいません</td>
                   </tr>
                   <tr v-for="pl in blk.players" :key="pl.name"
                       @click="openPlayerByNameAndTeam(pl.name, blk.team.team, blk.posKey)"
@@ -744,6 +746,12 @@
                         {{ pl.alloc_war > 0 ? '+' : '' }}{{ pl.alloc_war }}
                       </td>
                       <td class="px-2 py-2 text-right font-num text-slate-400">{{ pl.total_war }}</td>
+                      <td class="px-2 py-2 text-center">
+                        <span v-if="pl.ovr_grade" :class="'rank-badge rank-' + pl.ovr_grade" class="px-2 py-0.5 text-xs font-pawapro shadow-sm">
+                          {{ pl.ovr_grade }} <span class="font-num text-[10px] ml-0.5">{{ pl.ovr_val }}</span>
+                        </span>
+                        <span v-else class="text-slate-500 font-num">-</span>
+                      </td>
                       <td class="px-2 py-2 text-right font-num text-slate-300">{{ pl.pa }}</td>
                       <td class="px-2 py-2 text-right font-num text-cyan-400 font-bold">{{ pl.wrc_plus }}</td>
                       <td class="px-2 py-2 text-right font-num text-emerald-400">{{ pl.ops }}</td>
@@ -759,6 +767,12 @@
                       <td class="px-2 py-2 text-right font-num text-slate-300">{{ pl.ip }}回</td>
                       <td class="px-2 py-2 text-right font-num font-black text-cyan-300 text-sm">
                         {{ pl.war > 0 ? '+' : '' }}{{ pl.war }}
+                      </td>
+                      <td class="px-2 py-2 text-center">
+                        <span v-if="pl.ovr_grade" :class="'rank-badge rank-' + pl.ovr_grade" class="px-2 py-0.5 text-xs font-pawapro shadow-sm">
+                          {{ pl.ovr_grade }} <span class="font-num text-[10px] ml-0.5">{{ pl.ovr_val }}</span>
+                        </span>
+                        <span v-else class="text-slate-500 font-num">-</span>
                       </td>
                       <td class="px-2 py-2 text-center">
                         <span class="text-xs px-2 py-0.5 rounded font-bold"
@@ -1587,15 +1601,17 @@
                   <th class="p-2.5 text-right">守備シェア</th>
                   <th class="p-2.5 text-right text-amber-400 font-bold">配分WAR</th>
                   <th class="p-2.5 text-right text-slate-400">通算WAR</th>
+                  <th class="p-2.5 text-center">総合力</th>
                   <th class="p-2.5 text-right">打席数</th>
                   <th class="p-2.5 text-right">wRC+</th>
                   <th class="p-2.5 text-right">OPS</th>
-                  <th class="p-2.5 text-center">守備評価</th>
+                  <th class="p-2.5 text-center">守備力</th>
                 </template>
                 <template v-else>
                   <th class="p-2.5 text-right">登板</th>
                   <th class="p-2.5 text-right">投球回(IP)</th>
                   <th class="p-2.5 text-right text-cyan-400 font-bold">WAR</th>
+                  <th class="p-2.5 text-center">総合力</th>
                   <th class="p-2.5 text-center">適性</th>
                   <th class="p-2.5 text-right">FIP</th>
                   <th class="p-2.5 text-right">K%</th>
@@ -1619,6 +1635,12 @@
                     {{ pl.alloc_war > 0 ? '+' : '' }}{{ pl.alloc_war }}
                   </td>
                   <td class="p-2.5 text-right font-num text-slate-400">{{ pl.total_war }}</td>
+                  <td class="p-2.5 text-center">
+                    <span v-if="pl.ovr_grade" :class="'rank-badge rank-' + pl.ovr_grade" class="px-2 py-0.5 text-xs font-pawapro shadow-sm">
+                      {{ pl.ovr_grade }} <span class="font-num text-[10px] ml-0.5">{{ pl.ovr_val }}</span>
+                    </span>
+                    <span v-else class="text-slate-500 font-num">-</span>
+                  </td>
                   <td class="p-2.5 text-right font-num text-slate-300">{{ pl.pa }}</td>
                   <td class="p-2.5 text-right font-num text-cyan-400 font-bold">{{ pl.wrc_plus }}</td>
                   <td class="p-2.5 text-right font-num text-emerald-400">{{ pl.ops }}</td>
@@ -1634,6 +1656,12 @@
                   <td class="p-2.5 text-right font-num text-slate-300">{{ pl.ip }}回</td>
                   <td class="p-2.5 text-right font-num font-black text-cyan-300 text-sm">
                     {{ pl.war > 0 ? '+' : '' }}{{ pl.war }}
+                  </td>
+                  <td class="p-2.5 text-center">
+                    <span v-if="pl.ovr_grade" :class="'rank-badge rank-' + pl.ovr_grade" class="px-2 py-0.5 text-xs font-pawapro shadow-sm">
+                      {{ pl.ovr_grade }} <span class="font-num text-[10px] ml-0.5">{{ pl.ovr_val }}</span>
+                    </span>
+                    <span v-else class="text-slate-500 font-num">-</span>
                   </td>
                   <td class="p-2.5 text-center">
                     <span class="text-xs px-2 py-0.5 rounded font-bold"
